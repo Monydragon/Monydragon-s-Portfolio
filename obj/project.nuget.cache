@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yyw5oar7W8fBPHkUD06QA0VET8hiuUzyDKsIWhQauuzpy7jxJKXc8xKIRjOQw/5TmwIx0Ine7w98oKzmzeQKWw==",
+  "dgSpecHash": "6LNeA/GsSjkVmLEBaO+3yGU8D9rfzmgIgQ/16MqfbIX8oAEMVZK1vOI+2yn3A7DX0nU2yvq7V5z17dbjLOK8ng==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\Web\\Monydragons-Portfolio\\Monydragons-Portfolio.csproj",
+  "projectFilePath": "D:\\Projects\\Github\\Web\\Monydragons-Portfolio\\Monydragons-Portfolio.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.1\\microsoft.aspnetcore.authorization.7.0.1.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.aspnetcore.components\\7.0.1\\microsoft.aspnetcore.components.7.0.1.nupkg.sha512",

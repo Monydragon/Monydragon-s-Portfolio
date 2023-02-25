@@ -1,20 +1,19 @@
-/* /Pages/Contact.razor.rz.scp.css */
-.card[b-rj8wvpqeh4] {
+﻿.card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     max-width: 300px;
     margin: auto;
     text-align: center;
 }
-html[b-rj8wvpqeh4], h1[b-rj8wvpqeh4]{
+html, h1{
     color: grey;
 }
 
-.title[b-rj8wvpqeh4] {
+.title {
     color: grey;
     font-size: 18px;
 }
 
-button[b-rj8wvpqeh4] {
+button {
     border: none;
     outline: 0;
     display: inline-block;
@@ -27,21 +26,17 @@ button[b-rj8wvpqeh4] {
     font-size: 18px;
 }
 
-a[b-rj8wvpqeh4] {
+a {
     text-decoration: none;
     font-size: 22px;
     color: black;
 }
 
-button:hover[b-rj8wvpqeh4], a:hover[b-rj8wvpqeh4] {
+button:hover, a:hover {
     opacity: 0.7;
 }
 
-.links a[b-rj8wvpqeh4] {
+.links a {
     display: inline-block;
     margin-right: 10px; /* Optional: add some space between the links */
-}
-/* /Pages/Skills.razor.rz.scp.css */
-.checked[b-twdgfwxjrf]{
-    color: orange
 }

@@ -1,7 +1,21 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
-html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+html {
+    font-family: 'Verdana', Verdana, Arial, sans-serif;
+    background-color: #343a40;
+}
+
+html, h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    color: white;
+}
+
+.main {
+    color: white;
+}
+
+.container-fluid{
+    background-color: #343a40;
 }
 
 h1:focus {

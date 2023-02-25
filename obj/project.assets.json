@@ -1807,11 +1807,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\Web\\Monydragons-Portfolio\\Monydragons-Portfolio.csproj",
+      "projectUniqueName": "D:\\Projects\\Github\\Web\\Monydragons-Portfolio\\Monydragons-Portfolio.csproj",
       "projectName": "Monydragons-Portfolio",
-      "projectPath": "D:\\Projects\\Web\\Monydragons-Portfolio\\Monydragons-Portfolio.csproj",
+      "projectPath": "D:\\Projects\\Github\\Web\\Monydragons-Portfolio\\Monydragons-Portfolio.csproj",
       "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\Web\\Monydragons-Portfolio\\obj\\",
+      "outputPath": "D:\\Projects\\Github\\Web\\Monydragons-Portfolio\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
