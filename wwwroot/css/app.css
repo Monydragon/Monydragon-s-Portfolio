@@ -10,6 +10,24 @@ html, h1, h2, h3, h4, h5, h6 {
     color: white;
 }
 
+hr {
+    margin: 40px 0;
+}
+
+.hr1 {
+    border: 0;
+    border-top: 1px solid #CCC;
+}
+
+.center
+{
+    text-align: center;
+}
+
+p.lead { text-align: center; color: white; }
+p.lead a { color: cyan; text-decoration: underline; }
+p.lead a:hover { text-decoration: none; }
+
 .main {
     color: white;
 }
