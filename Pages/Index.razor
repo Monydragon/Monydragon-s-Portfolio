@@ -1,5 +1,6 @@
 ﻿@page "/"
-
+@using System.Text.Json
+@using System.Net.Http.Json
 <PageTitle>Home</PageTitle>
 
 <h1 class="center"><strong>Mony Dragon</strong><br></h1>
@@ -12,4 +13,40 @@
     <a href="https://docs.google.com/document/d/1cvJ4FwkyQfbhWxCRXNJSMYR-QyB3ckxld4fCk_NqkG8" class="button resume-button">Download Software Developer Resume</a>
     <a href="https://drive.google.com/file/d/1brDetpKYzczfkS_9yZ2W3CPK2vETe1zA/view" class="button resume-button">Download Game Developer Resume</a>
 </div>
+
+<div class="center">
+    <h3>Random Facts</h3>
+    
+    @if (!string.IsNullOrWhiteSpace(fact))
+    {
+        <h4>Here is a random fact!</h4>
+        <p>@fact</p>
+    }
+    
+    <button class="btn btn-primary" @onclick="GetRandomFact">Get Random Fact</button>
+</div>
+
+
+@code {
+    private string fact;
+
+    [Inject]
+    private HttpClient HttpClient { get; set; }
+
+    private async Task GetRandomFact()
+    {
+        var factsJson = await HttpClient.GetStringAsync("/data/random-facts.json");
+        var facts = JsonSerializer.Deserialize<List<RandomFact>>(factsJson);
+
+        var random = new Random();
+        var index = random.Next(0, facts.Count);
+        fact = facts[index].fact;
+    }
+
+    public class RandomFact
+    {
+        public string fact { get; set; }
+    }
+}
+
 
