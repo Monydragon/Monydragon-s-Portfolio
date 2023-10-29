@@ -25,4 +25,8 @@
       <_ContentIncludedByDefault Remove="ConsoleSignalRServer\obj\project.packagespec.json" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Include="wwwroot\web.config.xml" />
+    </ItemGroup>
+
 </Project>
