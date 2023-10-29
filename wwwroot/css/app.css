@@ -131,3 +131,110 @@ a, .btn-link {
     .loading-progress-text:after {
         content: var(--blazor-load-percentage-text, "Loading");
     }
+
+/* Base Styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #0071c1;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+    color: #00589b;
+}
+
+/* Intro Section */
+.intro-section {
+    max-width: 800px; /* You can adjust this value based on your preference */
+    margin: 10px auto;
+    padding: 10px 30px;
+    background-color: #343A40;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.intro-section p {
+    margin-bottom: 20px;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.intro-section p:last-child {
+    margin-bottom: 0;
+}
+
+.center {
+    text-align: center;
+}
+
+.hr1 {
+    border: 0;
+    border-top: 1px solid #CCC;
+    margin: 20px 0;
+}
+
+.portfolio-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.image-item {
+    background-color: #343A40;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* You can adjust this as per your design requirement */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.image-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.image-item h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.image-item h4 {
+    margin-top: 5px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.image-item p {
+    color: #ffffff;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .intro-section {
+        padding: 15px 20px;
+    }
+
+    .intro-section p {
+        font-size: 16px;
+    }
+}

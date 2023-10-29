@@ -11,4 +11,18 @@
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.1" PrivateAssets="all" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="ConsoleSignalRServer\bin\Debug\netcoreapp3.1\ConsoleSignalRServer.deps.json" />
+      <_ContentIncludedByDefault Remove="ConsoleSignalRServer\bin\Debug\netcoreapp3.1\ConsoleSignalRServer.runtimeconfig.dev.json" />
+      <_ContentIncludedByDefault Remove="ConsoleSignalRServer\bin\Debug\netcoreapp3.1\ConsoleSignalRServer.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="ConsoleSignalRServer\bin\Release\netcoreapp3.1\ConsoleSignalRServer.deps.json" />
+      <_ContentIncludedByDefault Remove="ConsoleSignalRServer\bin\Release\netcoreapp3.1\ConsoleSignalRServer.runtimeconfig.dev.json" />
+      <_ContentIncludedByDefault Remove="ConsoleSignalRServer\bin\Release\netcoreapp3.1\ConsoleSignalRServer.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="ConsoleSignalRServer\bin\Release\netcoreapp3.1\publish\ConsoleSignalRServer.deps.json" />
+      <_ContentIncludedByDefault Remove="ConsoleSignalRServer\bin\Release\netcoreapp3.1\publish\ConsoleSignalRServer.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="ConsoleSignalRServer\obj\ConsoleSignalRServer.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="ConsoleSignalRServer\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="ConsoleSignalRServer\obj\project.packagespec.json" />
+    </ItemGroup>
+
 </Project>
