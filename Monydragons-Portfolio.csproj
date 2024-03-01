@@ -29,4 +29,8 @@
       <None Include="wwwroot\web.config.xml" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="wwwroot\resume\" />
+    </ItemGroup>
+
 </Project>

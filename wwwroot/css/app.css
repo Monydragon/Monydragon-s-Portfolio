@@ -227,6 +227,63 @@ a:hover {
     margin-bottom: 10px;
 }
 
+.resume-section {
+    margin: 20px auto;
+    text-align: center; /* Ensures content is centered */
+}
+
+.resume-section h3, .resume-title {
+    text-align: center !important;
+    font-weight: bold !important;
+}
+
+.resume-section h3 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.resume-title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffc107; /* This color is for making the title stand out */
+    margin-bottom: 15px;
+    display: block; /* Ensure this is a block-level element for text-align to work */
+}
+
+.resume-item {
+    margin-bottom: 30px; /* Adds more space between resume items */
+}
+
+
+.button-group {
+    justify-content: center; /* Centers the button group */
+    display: flex;
+    gap: 10px; /* Spacing between buttons */
+}
+
+.button {
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-weight: bold; /* Ensures button text is bold */
+}
+
+.button:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+
+
 
 /* Responsive Styles */
 @media screen and (max-width: 768px) {
