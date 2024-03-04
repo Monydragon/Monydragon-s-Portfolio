@@ -3,13 +3,28 @@
     <system.webServer>
         <rewrite>
             <rules>
-                <rule name="Blazor Routes" stopProcessing="true">
-                    <match url=".*" />
-                    <conditions logicalGrouping="MatchAll">
-                        <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
-                        <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
+                <rule name="HTTP to HTTPS redirect" stopProcessing="true">
+                    <match url="(.*)" />
+                    <conditions>
+                        <add input="{HTTPS}" pattern="off" ignoreCase="true" />
                     </conditions>
-                    <action type="Rewrite" url="index.html" />
+                    <action type="Redirect" url="https://{HTTP_HOST}/{R:1}" redirectType="Permanent" />
+                </rule>
+                <rule name="pageroute-contact" patternSyntax="Wildcard">
+                    <match url="contact" />
+                    <action type="Rewrite" url="/" />
+                </rule>
+                <rule name="pageroute-experience" patternSyntax="Wildcard">
+                    <match url="experience" />
+                    <action type="Rewrite" url="/" />
+                </rule>
+                <rule name="pageroute-portfolio" patternSyntax="Wildcard">
+                    <match url="portfolio" />
+                    <action type="Rewrite" url="/" />
+                </rule>
+                <rule name="pageroute-skills" patternSyntax="Wildcard">
+                    <match url="skills" />
+                    <action type="Rewrite" url="/" />
                 </rule>
             </rules>
         </rewrite>
