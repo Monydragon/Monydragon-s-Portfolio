@@ -11,3 +11,19 @@
     margin: 10px;
 }
 
+.card {
+    background-color: #343A40 !important;
+}
+
+.card-body, .card-title, .card-text, .btn-link {
+    color: white !important;
+}
+
+.btn-primary {
+    width: 100%; /* Make the button take the full width */
+}
+
+.card .collapse .card-body {
+    color: white; /* Ensure collapsed content text is white */
+}
+

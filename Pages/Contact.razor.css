@@ -1,6 +1,6 @@
 ﻿.card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
+    max-width: 350px !important;
     margin: auto;
     text-align: center;
 }
@@ -39,4 +39,11 @@ button:hover, a:hover {
 .links a {
     display: inline-block;
     margin-right: 10px; /* Optional: add some space between the links */
+}
+
+/* This is your base style - it affects all devices */
+.card img {
+    width: 100%;
+    height: auto; /* maintain aspect ratio */
+    display: block; /* remove extra space below image */
 }
