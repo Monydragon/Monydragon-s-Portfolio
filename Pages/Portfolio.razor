@@ -2,9 +2,6 @@
 
 <PageTitle>Portfolio</PageTitle>
 
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-
 <div class="container text-center my-4">
     <h1>Portfolio</h1>
     <div class="my-4 text-center">
@@ -25,16 +22,18 @@
         <!-- Unity Asset 1: Pixel Engine for Unity -->
         <div class="col-md-4 mb-4">
             <div class="card bg-dark text-white">
-                <img src="Images/PEFUTitle.png" class="card-img-top" alt="Pixel Engine for Unity" style="height: 200px; object-fit: cover;">
+                <a href="https://dragonlens.itch.io/unity-pixel-engine" target="_blank">
+                    <img src="Images/PEFUTitle.png" class="card-img-top" alt="Pixel Engine for Unity" style="height: 200px; object-fit: cover;">
+                </a>
                 <div class="card-body">
                     <h5 class="card-title"><a href="https://dragonlens.itch.io/unity-pixel-engine" target="_blank">Pixel Engine for Unity</a></h5>
                     <button class="btn btn-primary w-100" @onclick="() => ToggleCollapse(0)">
                         Description
                     </button>
-                    @if(IsCollapsed[0])
+                    @if (IsCollapsed[0])
                     {
                         <div class="mt-2">
-                            <p>A versatile engine tailored for Unity, perfect for retro-inspired projects.</p> 
+                            <p>A versatile engine tailored for Unity, perfect for retro-inspired projects.</p>
                         </div>
                     }
                 </div>
@@ -44,7 +43,9 @@
         <!-- Unity Asset 2: TBS - 2d Turn-based Battle System -->
         <div class="col-md-4 mb-4">
             <div class="card bg-dark text-white">
-                <img src="Images/TBSCover.png" class="card-img-top" alt="TBS - 2d Turn-based Battle System" style="height: 200px; object-fit: cover;">
+                <a href="https://assetstore.unity.com/packages/templates/systems/tbs-2d-turn-based-battle-system-225475" target="_blank">
+                    <img src="Images/TBSCover.png" class="card-img-top" alt="TBS - 2d Turn-based Battle System" style="height: 200px; object-fit: cover;">
+                </a>
                 <div class="card-body">
                     <h5 class="card-title"><a href="https://assetstore.unity.com/packages/templates/systems/tbs-2d-turn-based-battle-system-225475" target="_blank">TBS - 2d Turn-based Battle System</a></h5>
                     <button class="btn btn-primary w-100" @onclick="() => ToggleCollapse(1)">
@@ -69,7 +70,9 @@
             <!-- Game 1: Phantasy Quest: The Prologue -->
             <div class="col-md-4 mb-4">
                 <div class="card bg-dark text-white">
-                    <img src="Images/PQCover.png" class="card-img-top" alt="Phantasy Quest: The Prologue" style="height: 200px; object-fit: cover;">
+                    <a href="https://monydragon.itch.io/phantasy-quest-the-prologue" target="_blank">
+                        <img src="Images/PQCover.png" class="card-img-top" alt="Phantasy Quest: The Prologue" style="height: 200px; object-fit: cover;">
+                    </a>
                     <div class="card-body">
                         <h5 class="card-title"><a href="https://monydragon.itch.io/phantasy-quest-the-prologue" target="_blank">Phantasy Quest: The Prologue</a></h5>
                         <button class="btn btn-primary w-100" @onclick="() => ToggleCollapse(2)">
@@ -95,7 +98,9 @@
             <!-- Game 2: Lost Dreams -->
             <div class="col-md-4 mb-4">
                 <div class="card bg-dark text-white">
-                    <img src="Images/LostDreamsCover.png" class="card-img-top" alt="Lost Dreams" style="height: 200px; object-fit: cover;">
+                    <a href="https://dragonlens.itch.io/lost-dreams" target="_blank">
+                        <img src="Images/LostDreamsCover.png" class="card-img-top" alt="Lost Dreams" style="height: 200px; object-fit: cover;">
+                    </a>
                     <div class="card-body">
                         <h5 class="card-title"><a href="https://dragonlens.itch.io/lost-dreams" target="_blank">Lost Dreams</a></h5>
                         <button class="btn btn-primary w-100" @onclick="() => ToggleCollapse(3)">
@@ -116,7 +121,9 @@
             <!-- Game 3: Luminous -->
             <div class="col-md-4 mb-4">
                 <div class="card bg-dark text-white">
-                    <img src="Images/LuminousCover.png" class="card-img-top" alt="Luminous" style="height: 200px; object-fit: cover;">
+                    <a href="https://dragonlens.itch.io/luminous" target="_blank">
+                        <img src="Images/LuminousCover.png" class="card-img-top" alt="Luminous" style="height: 200px; object-fit: cover;">
+                    </a>
                     <div class="card-body">
                         <h5 class="card-title"><a href="https://dragonlens.itch.io/luminous" target="_blank">Luminous</a></h5>
                         <button class="btn btn-primary w-100" @onclick="() => ToggleCollapse(4)">
@@ -138,7 +145,9 @@
             <!-- Game 4: The Afterlife -->
             <div class="col-md-4 mb-4">
                 <div class="card bg-dark text-white">
-                    <img src="Images/TheAfterLifeCover.PNG" class="card-img-top" alt="The Afterlife" style="height: 200px; object-fit: cover;">
+                    <a href="https://dragonlens.itch.io/the-afterlife" target="_blank">
+                        <img src="Images/TheAfterLifeCover.PNG" class="card-img-top" alt="The Afterlife" style="height: 200px; object-fit: cover;">
+                    </a>
                     <div class="card-body">
                         <h5 class="card-title"><a href="https://dragonlens.itch.io/the-afterlife" target="_blank">The Afterlife</a></h5>
                         <button class="btn btn-primary w-100" @onclick="() => ToggleCollapse(5)">
@@ -159,7 +168,9 @@
             <!-- Game 5: Oceans Call -->
             <div class="col-md-4 mb-4">
                 <div class="card bg-dark text-white">
-                    <img src="Images/OceansCallTitle.png" class="card-img-top" alt="Oceans Call" style="height: 200px; object-fit: cover;">
+                    <a href="https://dragonlens.itch.io/oceanscall" target="_blank">
+                        <img src="Images/OceansCallTitle.png" class="card-img-top" alt="Oceans Call" style="height: 200px; object-fit: cover;">
+                    </a>
                     <div class="card-body">
                         <h5 class="card-title"><a href="https://dragonlens.itch.io/oceanscall" target="_blank">Oceans Call</a></h5>
                         <button class="btn btn-primary w-100" @onclick="() => ToggleCollapse(6)">
@@ -203,9 +214,11 @@
             <!-- Game 6: We're Live -->
             <div class="col-md-4 mb-4">
                 <div class="card bg-dark text-white">
-                    <img src="Images/WeReLive.png" class="card-img-top" alt="We're Live" style="height: 200px; object-fit: cover;">
+                    <a href="https://dragonlens.itch.io/were-live" target="_blank">
+                        <img src="Images/WeReLive.png" class="card-img-top" alt="We're Live" style="height: 200px; object-fit: cover;">
+                    </a>
                     <div class="card-body">
-                        <h5 class="card-title"><a href="#" target="_blank">We're Live</a></h5>
+                        <h5 class="card-title"><a href="https://dragonlens.itch.io/were-live" target="_blank">We're Live</a></h5>
                         <button class="btn btn-primary w-100" @onclick="() => ToggleCollapse(7)">
                             Description
                         </button>
@@ -251,9 +264,11 @@
             <!-- Game 7: Beyond the Infernal Door -->
             <div class="col-md-4 mb-4">
                 <div class="card bg-dark text-white">
-                    <img src="Images/BeyondTheInfernalDoor.png" class="card-img-top" alt="Beyond the Infernal Door" style="height: 200px; object-fit: cover;">
+                    <a href="https://dragonlens.itch.io/beyond-the-infernal-door" target="_blank">
+                        <img src="Images/BeyondTheInfernalDoor.png" class="card-img-top" alt="Beyond the Infernal Door" style="height: 200px; object-fit: cover;">
+                    </a>
                     <div class="card-body">
-                        <h5 class="card-title"><a href="#" target="_blank">Beyond the Infernal Door</a></h5>
+                        <h5 class="card-title"><a href="https://dragonlens.itch.io/beyond-the-infernal-door" target="_blank">Beyond the Infernal Door</a></h5>
                         <button class="btn btn-primary w-100" @onclick="() => ToggleCollapse(8)">
                             Description
                         </button>
@@ -311,7 +326,8 @@
 
 
 @code {
-    private Dictionary<int, bool> IsCollapsed = new Dictionary<int, bool>();
+    
+    private Dictionary<int, bool> IsCollapsed = new();
 
     protected override void OnInitialized()
     {
