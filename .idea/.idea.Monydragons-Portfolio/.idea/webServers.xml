@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="34dace30-4b1c-4880-bef2-8da20eb26722" name="Monydragon.comFTP" url="http://dls53rv3r.dragonlens.io">
+        <fileTransfer rootFolder="/public_html" host="dls53rv3r.dragonlens.io" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" connections="100" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+        <option name="numberOfConnections" value="100" />
+      </webServer>
+    </option>
+  </component>
+</project>

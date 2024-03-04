@@ -2,7 +2,7 @@
 <project version="4">
   <component name="SshConfigs">
     <configs>
-      <sshConfig host="192.227.190.131" id="8a33678c-3440-4337-91ad-571f20d49244" keyPath="C:\Users\monyd\OneDrive\Documents\Dragon Lens Studios\Web Server\dls_web_dev.ppk" port="22" nameFormat="DESCRIPTIVE" username="admin" useOpenSSHConfig="true" />
+      <sshConfig authType="OPEN_SSH" host="192.227.190.131" id="8a33678c-3440-4337-91ad-571f20d49244" port="22" nameFormat="DESCRIPTIVE" username="admin" useOpenSSHConfig="true" />
     </configs>
   </component>
 </project>

@@ -33,4 +33,16 @@
       <Folder Include="wwwroot\resume\" />
     </ItemGroup>
 
+    <Target Name="PostPublishActions" AfterTargets="Publish">
+        <!-- Move contents of wwwroot to the publish directory root -->
+        <ItemGroup>
+            <WwwRootFiles Include="$(PublishDir)wwwroot\**\*.*" />
+        </ItemGroup>
+        <Move SourceFiles="@(WwwRootFiles)" DestinationFolder="$(PublishDir)%(RecursiveDir)" />
+        <!-- Remove the now empty wwwroot directory -->
+        <RemoveDir Directories="$(PublishDir)wwwroot" />
+    </Target>
+
+
+
 </Project>
