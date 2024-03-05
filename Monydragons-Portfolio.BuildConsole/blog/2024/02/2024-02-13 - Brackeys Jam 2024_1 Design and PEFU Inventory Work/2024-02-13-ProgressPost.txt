@@ -1,0 +1,18 @@
+🔧 Day 44 of #CodeADay: Gearing Up & Laying Plans! Today's focus was split between prepping the Pixel Engine for Unity and diving deeper into the Brackey's Game Jam 2024.1 preparations. 🎮📝
+
+👨‍💻 Mony's Coding Sprint:
+✅ Dedicated the day to refining the inventory system, implementing crucial code changes needed for seamless integration within the Pixel Engine for Unity.
+✅ The groundwork laid today is vital for the upcoming features and functionality we envision for our games.
+
+👩‍💻 Stormi's Strategic Moves:
+✅ Continued to flesh out the Game Design Document for our reverse murder mystery game, ensuring every detail is captured for a smooth development process.
+✅ Together, we brainstormed and compiled a list of tasks, setting the stage for focused and efficient progress throughout the game jam.
+
+🗓️ Progress Update: 2024-02-13
+
+As we juggle the technical enhancements for the Pixel Engine and the creative demands of game design, our journey through game development continues to be a thrilling challenge. Our partnership is our strength, allowing us to cover more ground and infuse our projects with innovation and depth.
+
+🚀 Looking Ahead:
+With a clear set of tasks and a solid plan in hand, we're ready to tackle the Brackey's Game Jam head-on. Stay tuned for updates as we bring our vision for the game jam to life, one task at a time.
+
+#UnityDevelopment #GameDesignPlanning #BrackeysGameJam2024 #PixelEngine #DevDuoDynamics #GameJamPrep

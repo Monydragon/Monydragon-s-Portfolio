@@ -1,0 +1,16 @@
+🌐 Day 17 of #CodeADay: A blend of learning and refining! Stormi Dragon and Mony are navigating through the intricacies of coding and game development. 🖥️🎮
+
+👩‍💻 Stormi's C# Journey:
+✅ Diving into the depths of C# - exploring versatile ways to weave her coding magic into projects.
+✅ Embracing the journey of continuous learning and application.
+
+👨‍💻 Mony's Unity Developments:
+✅ Progressing with the Puppy Quest prototype - tackling the challenges of debugging.
+✅ Fine-tuning the 3rd person controller in C# for optimal responsiveness.
+✅ Integrating Cinemachine for a seamless and immersive camera experience.
+
+🗓️ Progress Update: 2024-01-17
+
+Our adventure in code continues, balancing learning with practical application. Join us as we turn challenges into achievements! 📚🎥
+
+#CSharpExploration #UnityDevelopment #GameDevJourney #ContinuousLearning #CodingAdventures

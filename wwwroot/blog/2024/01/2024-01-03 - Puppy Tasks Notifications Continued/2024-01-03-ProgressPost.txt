@@ -1,0 +1,11 @@
+🌟 Day 3 of the #CodeADay challenge and 'Puppy Tasks' is shaping up nicely! Backend foundations are being laid, paving the way for a robust task management system. 🛠️
+
+👩‍💻👨‍💻 Progress with Stormi Dragon:
+✅ Enhanced notification functionality.
+✅ Initiated backend setup for task management.
+
+🗓️ Progress Update: 2024-01-03
+
+We're excited to be crafting this tail-wagging productivity tool! Follow our journey as we fetch the best features for your daily tasks. 🐕‍🦺💼
+
+#DevDynamicDuo #BackendBuilding #DotNETMAUI #TaskTracker #PuppyTasksProgress

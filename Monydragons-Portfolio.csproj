@@ -9,6 +9,7 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.2" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.2" PrivateAssets="all" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     </ItemGroup>
 
     <ItemGroup>
@@ -78,27 +79,72 @@
       <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\obj\Release\net8.0\staticwebassets.development.json" />
       <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\obj\Release\net8.0\staticwebassets.pack.json" />
       <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\obj\Release\net8.0\staticwebassets.publish.json" />
+      <_ContentIncludedByDefault Remove="Monydragons-Portfolio.Models\obj\Monydragon-Portfolio.Models.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="Monydragons-Portfolio.Models\obj\Monydragons-Portfolio.Models.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="Monydragons-Portfolio.Models\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="Monydragons-Portfolio.Models\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="Monydragons-Portfolio.Services\obj\Monydragons-Portfolio.Services.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="Monydragons-Portfolio.Services\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="Monydragons-Portfolio.Services\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="Monydragons-Portfolio.BuildConsole\obj\BuildConsole.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="Monydragons-Portfolio.BuildConsole\obj\Monydragons-Portfolio.BuildConsole.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="Monydragons-Portfolio.BuildConsole\obj\Monydragons-Portfolio.Console.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="Monydragons-Portfolio.BuildConsole\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="Monydragons-Portfolio.BuildConsole\obj\project.packagespec.json" />
     </ItemGroup>
 
     <ItemGroup>
       <None Include="wwwroot\web.config.xml" />
       <None Remove="MonydagonPortfolioWebApp\**" />
+      <None Remove="Monydragons-Portfolio.Models\**" />
+      <None Remove="Monydragons-Portfolio.Services\**" />
+      <None Remove="BuildConsole\**" />
+      <None Remove="Monydragons-Portfolio.BuildConsole\**" />
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="wwwroot\blog\" />
       <Folder Include="wwwroot\resume\" />
     </ItemGroup>
 
     <ItemGroup>
       <Compile Remove="MonydagonPortfolioWebApp\**" />
+      <Compile Update="Monydragons-Portfolio.Models\Class1.cs">
+        <Link>Monydragon-Portfolio.Models\Class1.cs</Link>
+      </Compile>
+      <Compile Remove="Monydragons-Portfolio.Models\**" />
+      <Compile Remove="Monydragons-Portfolio.Services\**" />
+      <Compile Update="Monydragons-Portfolio.BuildConsole\Program.cs">
+        <Link>BuildConsole\Program.cs</Link>
+      </Compile>
+      <Compile Remove="BuildConsole\**" />
+      <Compile Remove="Monydragons-Portfolio.BuildConsole\**" />
     </ItemGroup>
 
     <ItemGroup>
       <EmbeddedResource Remove="MonydagonPortfolioWebApp\**" />
+      <EmbeddedResource Remove="Monydragons-Portfolio.Models\**" />
+      <EmbeddedResource Remove="Monydragons-Portfolio.Services\**" />
+      <EmbeddedResource Remove="BuildConsole\**" />
+      <EmbeddedResource Remove="Monydragons-Portfolio.BuildConsole\**" />
     </ItemGroup>
 
     <ItemGroup>
       <Content Remove="MonydagonPortfolioWebApp\**" />
+      <Content Remove="Monydragons-Portfolio.Models\**" />
+      <Content Remove="Monydragons-Portfolio.Services\**" />
+      <Content Remove="BuildConsole\**" />
+      <Content Remove="Monydragons-Portfolio.BuildConsole\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="Monydragons-Portfolio.Models\Monydragons-Portfolio.Models.csproj" />
+      <ProjectReference Include="Monydragons-Portfolio.Services\Monydragons-Portfolio.Services.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="Monydragons-Portfolio.Models\Monydragons-Portfolio.Models.csproj" />
+      <ProjectReference Include="Monydragons-Portfolio.Services\Monydragons-Portfolio.Services.csproj" />
     </ItemGroup>
 
     <Target Name="PostPublishActions" AfterTargets="Publish">
@@ -110,7 +156,5 @@
         <!-- Remove the now empty wwwroot directory -->
         <RemoveDir Directories="$(PublishDir)wwwroot" />
     </Target>
-
-
 
 </Project>

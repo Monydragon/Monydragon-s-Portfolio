@@ -1,0 +1,17 @@
+🎯 Day 24 of #CodeADay: Hitting the mark in game development! Stormi Dragon and I continue to bring our creative visions to life for the Global Game Jam project. 🌍🎮
+
+👩‍💻 Stormi's Design Mastery:
+✅ Focused on crafting the main game screen UI - a seamless blend of design and user experience.
+✅ Ensuring every visual element enhances the overall gameplay.
+
+👨‍💻 Mony's Tech Innovations:
+✅ Developed a first-person character controller, adding an immersive layer to our game.
+✅ Integrated an FPS controller - get ready for action-packed sequences!
+✅ Implemented a targeting reticle for precision gameplay.
+✅ Made numerous code enhancements for a smoother, more responsive experience.
+
+🗓️ Progress Update: 2024-01-24
+
+Our game is shaping up to be a thrilling blend of strategy and action. Stay tuned as we craft a gaming experience that's as exciting to play as it is to create! 🕹️💥
+
+#GameJamProgress #UIDesign #FPSController #CodingAdvances #DevDuo

@@ -1,0 +1,183 @@
+﻿@page "/blog"
+@using Monydragon_Portfolios.Models
+@using Monydragons_Portfolio.Services
+@inject BlogService BlogService
+
+
+<div class="header-container">
+    <div class="sticky-header">
+        <h1>Mony Dragon's Development Blog</h1>
+    </div>
+    <div class="search-area">
+        @if (showSearch)
+        {
+            <input type="text" @bind="searchTerm" @oninput="OnSearchTermChanged" placeholder="Search posts..." />
+            <button @onclick="ToggleSortingOrder">@($"{(sortingOrder ? "Descending" : "Ascending")}")</button>
+        }
+        <button @onclick="ToggleSearch" class="search-toggle"><i class="fa fa-search"></i></button>
+    </div>
+</div>
+
+
+<div class="blog-container">
+@if (blogPosts == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    @foreach (var post in filteredPosts)
+    {
+        <div class="blog-post">
+            <h2>@GetTitleWithoutDate(post.Title)</h2>
+            <p><em>@post.Date.ToString("yyyy-MM-dd")</em></p>
+            @foreach (var content in post.ContentFiles)
+            {
+                <pre>@content</pre>
+            }
+            @foreach (var imageFile in post.ImageFiles)
+            {
+                <img src="@imageFile" alt="Blog Image" />
+            }
+        </div>
+    }
+}
+</div>
+
+@code {
+    private List<BlogPost> blogPosts = new();
+    private List<BlogPost> filteredPosts = new();
+    private bool sortingOrder = true; // true for Descending, false for Ascending
+    private string searchTerm = "";
+    private bool showSearch = false; // Controls the visibility of the search box
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        blogPosts = await BlogService.GetBlogPostsAsync();
+        foreach (var post in blogPosts)
+        {
+            var contents = new List<string>();
+            foreach (var contentFile in post.ContentFiles)
+            {
+                var content = await BlogService.GetContentFileAsync(contentFile); // Ensure this method is correctly fetching the content
+                contents.Add(content);
+            }
+            post.ContentFiles = contents; // Set the loaded content
+        }
+        filteredPosts = blogPosts.OrderByDescending(post => post.Date).ToList();
+    }
+
+
+    private async Task<string> GetBlogPostContentAsync(string contentFile)
+    {
+        // This method should read the content of the text file and return it as a string.
+        // You might need to adjust the BlogService to fetch and return the content of text files.
+        return await BlogService.GetContentFileAsync(contentFile);
+    }
+
+    private async Task ToggleSortingOrder()
+    {
+        sortingOrder = !sortingOrder;
+        await SortAndFilterPosts();
+    }
+    
+    private void FilterPosts()
+    {
+        // Start with all blog posts or the subset based on another filter like date.
+        IEnumerable<BlogPost> result = blogPosts;
+
+        // Apply search term filtering if there is a search term.
+        if (!string.IsNullOrWhiteSpace(searchTerm))
+        {
+            result = result.Where(post =>
+                post.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                post.ContentFiles.Any(content => content.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) ||
+                post.ImageFiles.Any(image => image.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)));
+        }
+
+        // Apply sorting based on the current sorting order.
+        result = sortingOrder ? 
+            result.OrderByDescending(post => post.Date) : 
+            result.OrderBy(post => post.Date);
+
+        filteredPosts = result.ToList();
+    }
+
+
+    private async Task SortAndFilterPosts()
+    {
+        // Apply search term filtering if there is a search term.
+        IEnumerable<BlogPost> result = string.IsNullOrWhiteSpace(searchTerm)
+            ? blogPosts
+            : blogPosts.Where(post =>
+                post.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                post.ContentFiles.Any(content => content.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) ||
+                post.ImageFiles.Any(image => image.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)));
+
+        // Apply sorting based on the current sorting order.
+        result = sortingOrder
+            ? result.OrderByDescending(post => post.Date)
+            : result.OrderBy(post => post.Date);
+
+        // If you need to perform additional asynchronous operations for each post, do so here.
+        var taskList = result.Select(async post =>
+        {
+            // Hypothetical asynchronous operation - replace with actual async logic if needed.
+            post.ContentFiles = await Task.FromResult(post.ContentFiles.Select(content => /* some async transformation */ content).ToList());
+            return post;
+        });
+
+        // Await the completion of all asynchronous operations (if any).
+        var posts = await Task.WhenAll(taskList);
+
+        // Update the filteredPosts collection with the sorted and potentially transformed posts.
+        filteredPosts = posts.ToList();
+
+        // Notify the component that the state has changed so it can re-render with the updated posts.
+        StateHasChanged();
+    }
+
+    
+    private async Task OnSearchTermChanged(ChangeEventArgs e)
+    {
+        searchTerm = e.Value.ToString();
+        await ApplyFilters();
+    }
+
+// Updated ApplyFilters method that's now asynchronous
+    private async Task ApplyFilters()
+    {
+        FilterPosts();
+        await SortAndFilterPosts();
+    }
+
+
+    private void ToggleSearch()
+    {
+        showSearch = !showSearch;
+        Console.WriteLine("Search toggled.");
+        StateHasChanged(); // This line might be optional in Blazor Server, but just to ensure UI updates.
+    }
+    
+    private string GetTitleWithoutDate(string title)
+    {
+        // Assuming the date is always in the format "YYYY-MM-DD - "
+        // and you want to remove the first 11 characters (10 from date and 1 from the dash and space)
+        if (string.IsNullOrWhiteSpace(title))
+        {
+            return title;
+        }
+
+        int index = title.IndexOf(" - ");
+        if (index != -1)
+        {
+            // Return the substring after the " - "
+            return title.Substring(index + 3); // "+ 3" to also remove the " - "
+        }
+
+        // If the title does not contain " - ", return it unchanged
+        return title;
+    }
+}

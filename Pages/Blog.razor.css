@@ -1,0 +1,134 @@
+﻿.header-container {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #343A40;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #343A40; /* Adjust to match your site's theme */
+    color: white;
+    display: flex;
+    justify-content: space-between; /* Align items on opposite ends */
+    align-items: center;
+    padding: 0.5rem 1rem;
+    width: 100%;
+}
+
+.search-toggle-container {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0;
+}
+
+.sticky-header h1 {
+    margin: 0; /* Remove default margin */
+    flex-grow: 1; /* Allows the title to grow and push other items to the edge */
+    text-align: center;
+}
+
+.sticky-search {
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center children horizontally */
+    align-items: center; /* Center children vertically */
+    padding: 0.5rem 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.sticky-search.visible {
+    display: flex; /* Show the search bar when it's toggled */
+}
+
+.search-area {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Spacing between elements */
+}
+
+.search-area input, .search-area button {
+    display: block; /* Or inline-block */
+}
+
+.search-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.blog-container {
+    margin-top: 120px; /* Adjust based on the combined height of your header and search area */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.blog-post {
+    border: 1px solid #ccc;
+    margin: 20px;
+    padding: 15px;
+    width: 90%;
+    max-width: 800px;
+    background-color: #343A40; /* Adjust if needed */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional shadow for depth */
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Remove extra space below images */
+}
+
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    overflow-wrap: break-word;   /* Modern browsers */
+    margin-bottom: 1em;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+    .sticky-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .sticky-search {
+        top: auto; /* Adjust if needed for mobile layout */
+    }
+
+    .search-area {
+        width: 100%;
+        justify-content: center; /* Center the search area on small screens */
+    }
+
+    .search-toggle {
+        position: static;
+        margin-top: 10px;
+    }
+
+    .blog-container {
+        margin-top: 160px; /* Adjust based on the height of the header and search bar on mobile */
+    }
+
+    .blog-post {
+        width: 95%;
+        margin: 10px; /* Smaller margins on mobile */
+    }
+
+    .search-area input, .search-area select, .search-area button {
+        width: 100%; /* Full width for smaller screens */
+    }
+    
+}

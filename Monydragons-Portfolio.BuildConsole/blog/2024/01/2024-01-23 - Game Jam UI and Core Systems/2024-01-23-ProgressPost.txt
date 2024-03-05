@@ -1,0 +1,16 @@
+🎨 Day 23 of #CodeADay: Full-throttle into our Global Game Jam prototype! Stormi Dragon and I are combining our strengths to bring an untitled (but soon-to-be-titled) game to life. 🚀🕹️
+
+👩‍💻 Stormi's Creative Front:
+✅ Kickstarted the UI design for our main game interface - where aesthetics meet functionality.
+✅ Initiated a thorough game design document - mapping out our technical and creative blueprint.
+
+👨‍💻 Mony's Technical Trail:
+✅ Integrated features from Pixel Engine into our new game - a fusion of proven elements with fresh ideas.
+✅ Experimented with a first-person controller - crafting an immersive player experience.
+✅ Developed the core gameplay loop - ensuring it's engaging and 'streamed' perfectly.
+
+🗓️ Progress Update: 2024-01-23
+
+As we piece together this puzzle, excitement builds for what's to come. Follow our journey as we blend humor, creativity, and technology for the Global Game Jam! 🧩🤩
+
+#GlobalGameJam2024 #GamePrototype #UIandTech #CreativeCoding #GameDevJourney

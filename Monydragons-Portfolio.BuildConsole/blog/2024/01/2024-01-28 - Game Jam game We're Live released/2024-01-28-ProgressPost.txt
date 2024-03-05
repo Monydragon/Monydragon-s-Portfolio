@@ -1,0 +1,21 @@
+🚀 Day 28 of #CodeADay: Major Milestone Alert! Stormi Dragon and I are thrilled to announce that our FPS game loop for 'We're Live' is not just functional, but fully playable! 🎉🎮
+
+🔍 Deep Dive into Today's Progress:
+✅ After countless hours of coding and testing, we've fine-tuned the FPS mechanics - ensuring a smooth, responsive gaming experience.
+✅ Integrated key elements that make our game stand out - from dynamic player interactions to thrilling challenges.
+✅ Worked on balancing gameplay - the right mix of fun, strategy, and action.
+
+💡 Behind the Scenes:
+👩‍💻 Stormi focused on refining the UI, making it sleek and user-friendly.
+👨‍💻 Mony tackled the more technical aspects - ensuring the game mechanics are seamless and bug-free.
+
+🗓️ Progress Update: 2024-01-28
+
+'We're Live' is a testament to our passion for game development and our commitment to creating something unique and engaging. We invite you to experience the excitement and join us in this gaming adventure:
+
+🔗 https://globalgamejam.org/games/2024/were-live-2
+🔗 https://dragonlens.itch.io/were-live
+
+As we near the end of #GGJ2024, we're eager to share more updates and polish our game to perfection. Stay tuned for more gaming magic from the #DevDuo!
+
+#GameDevMastery #FPSFun #WeAreLive #UnityGameDevelopment #GGJ2024

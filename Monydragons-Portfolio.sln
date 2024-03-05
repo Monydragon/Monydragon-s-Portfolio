@@ -2,6 +2,12 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monydragons-Portfolio", "Monydragons-Portfolio.csproj", "{24CC1CE2-D7DD-467E-AF57-1AD8EC79D690}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monydragons-Portfolio.Models", "Monydragons-Portfolio.Models\Monydragons-Portfolio.Models.csproj", "{EA684554-CC16-4343-8957-4ED550B7DBA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monydragons-Portfolio.Services", "Monydragons-Portfolio.Services\Monydragons-Portfolio.Services.csproj", "{CDA29802-A685-4403-BB98-98422FEC7258}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monydragons-Portfolio.BuildConsole", "Monydragons-Portfolio.BuildConsole\Monydragons-Portfolio.BuildConsole.csproj", "{43CE413A-53CF-4F7A-BEB5-2E72FA83827F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +18,17 @@ Global
 		{24CC1CE2-D7DD-467E-AF57-1AD8EC79D690}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24CC1CE2-D7DD-467E-AF57-1AD8EC79D690}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24CC1CE2-D7DD-467E-AF57-1AD8EC79D690}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA684554-CC16-4343-8957-4ED550B7DBA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA684554-CC16-4343-8957-4ED550B7DBA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA684554-CC16-4343-8957-4ED550B7DBA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA684554-CC16-4343-8957-4ED550B7DBA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDA29802-A685-4403-BB98-98422FEC7258}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDA29802-A685-4403-BB98-98422FEC7258}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDA29802-A685-4403-BB98-98422FEC7258}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDA29802-A685-4403-BB98-98422FEC7258}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43CE413A-53CF-4F7A-BEB5-2E72FA83827F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43CE413A-53CF-4F7A-BEB5-2E72FA83827F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43CE413A-53CF-4F7A-BEB5-2E72FA83827F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43CE413A-53CF-4F7A-BEB5-2E72FA83827F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
