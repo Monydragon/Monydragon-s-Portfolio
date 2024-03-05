@@ -65,6 +65,14 @@
     cursor: pointer;
 }
 
+.refresh-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
 .blog-container {
     margin-top: 15px; /* Adjust based on the combined height of your header and search area */
     display: flex;
@@ -95,6 +103,74 @@ pre {
     word-wrap: break-word;       /* Internet Explorer 5.5+ */
     overflow-wrap: break-word;   /* Modern browsers */
     margin-bottom: 1em;
+}
+
+.pagination-controls {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+.pagination-controls li {
+    margin: 0 10px; /* Increased margin for larger touch targets */
+}
+
+.pagination-controls li button {
+    font-size: 1.5em; /* Larger text for readability */
+    border: 1px solid #ddd; /* Subtle border color */
+    background-color: #f8f9fa; /* Light grey background */
+    text-align: center;
+    padding: 10px 15px; /* Larger padding for a bigger button */
+    cursor: pointer;
+    border-radius: 0.25rem; /* Slightly rounded corners */
+    transition: background-color 0.2s; /* Smooth transition for hover effect */
+}
+
+.pagination-controls li button:hover {
+    background-color: #e2e6ea; /* A shade darker on hover for feedback */
+}
+
+.pagination-controls li button:focus {
+    outline: none; /* Removes the default focus outline */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Bootstrap-like focus shadow */
+}
+
+.pagination-controls li button:disabled {
+    color: #6c757d; /* Muted color for disabled buttons */
+    cursor: not-allowed; /* Changes cursor to indicate the button is disabled */
+    background-color: #f8f9fa; /* Keeps background consistent */
+}
+
+.pagination-controls li.active button {
+    border-color: #007bff; /* Bootstrap primary blue for active page border */
+    background-color: #007bff; /* Bootstrap primary blue for active page */
+    color: #fff; /* White text for contrast */
+}
+
+.pagination-controls li.disabled button {
+    opacity: 0.65; /* Transparency for disabled buttons */
+}
+
+/* Extra styling for a cleaner look */
+.pagination-controls li button {
+    min-width: 50px; /* Ensures buttons have a consistent width */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Ensure the pagination controls don't shrink or grow disproportionately */
+.pagination-controls li {
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+.icons-container {
+    display: flex;
+    align-items: center;
+}
+
+.search-toggle, .refresh-button {
+    margin-left: 10px; /* Adjust spacing as needed */
 }
 
 /* Responsive adjustments for mobile */
@@ -139,4 +215,28 @@ pre {
         width: 95%; /* Almost full width but with a little margin */
         margin: 10px; /* Margin around each post */
     }
+
+    .pagination-controls {
+        flex-wrap: wrap; /* Allow page numbers to wrap */
+    }
+
+    .pagination-controls li {
+        display: none; /* Hide all page numbers initially */
+    }
+
+    .pagination-controls li.active,
+    .pagination-controls li.adjacent {
+        display: inline-block; /* Show only the active and adjacent page numbers */
+    }
+
+    .pagination-controls .first-page,
+    .pagination-controls .last-page {
+        display: inline-block; /* Always show first and last page buttons */
+    }
+    
+    .pagination-controls li button {
+        padding: 8px 12px;
+        font-size: 1.2em; /* Slightly smaller text on mobile devices */
+    }
+
 }

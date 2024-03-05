@@ -13,5 +13,6 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddScoped<IBlogService, BlogService>();
 builder.Services.AddScoped<IContentService, BlogContentService>();
 builder.Services.AddScoped<IFilteringSortingService, FilteringSortingService>();
+builder.Services.AddScoped<IPaginationService, PaginationService>();
 
 await builder.Build().RunAsync();

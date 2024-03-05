@@ -12,6 +12,19 @@ public class BlogService : IBlogService
     {
         _httpClient = httpClient;
     }
+    
+    public async Task<IEnumerable<BlogPost>> FetchPostsAsync(int pageNumber, int pageSize)
+    {
+        // First, fetch all posts (assuming they're not too large in number for this example)
+        var allPosts = await GetBlogPostsAsync();
+
+        // Calculate pagination
+        var pagedPosts = allPosts
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize);
+
+        return pagedPosts;
+    }
 
     public async Task<List<BlogPost>> GetBlogPostsAsync()
     {

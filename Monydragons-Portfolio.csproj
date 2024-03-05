@@ -105,6 +105,7 @@
 
     <ItemGroup>
       <Folder Include="wwwroot\blog\" />
+      <Folder Include="wwwroot\css\font-awesome\" />
       <Folder Include="wwwroot\resume\" />
     </ItemGroup>
 

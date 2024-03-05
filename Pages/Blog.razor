@@ -1,9 +1,9 @@
 ﻿@page "/blog"
-@using Monydragon_Portfolios.Models
-@using Monydragons_Portfolio.Services.Content.Interface
 @inject IBlogService BlogService
 @inject IContentService BlogContentService
 @inject IFilteringSortingService FilteringSortingService
+@inject IPaginationService PaginationService
+@inject IJSRuntime JSRuntime
 
 <div class="header-container">
     <div class="sticky-header">
@@ -15,7 +15,11 @@
             <input type="text" @bind="searchTerm" @oninput="OnSearchTermChanged" placeholder="Search posts..." />
             <button @onclick="ToggleSortingOrder">@($"{(sortingOrder ? "Descending" : "Ascending")}")</button>
         }
-        <button @onclick="ToggleSearch" class="search-toggle"><i class="fa fa-search"></i></button>
+        <div class="icons-container">
+            <button @onclick="ToggleSearch" class="search-toggle"><i class="fa fa-search"></i></button>
+            <button @onclick="RefreshPosts" class="refresh-button"><i class="fas fa-sync-alt"></i></button>
+        </div>
+
     </div>
 </div>
 
@@ -43,6 +47,82 @@ else
             }
         </div>
     }
+    @if (isPaginationEnabled)
+    {
+        <nav aria-label="Page navigation" class="pagination-wrapper">
+            <ul class="pagination-controls">
+                <li class="page-item first-page">
+                    <button class="page-link" @onclick="GoToFirstPage" disabled="@FirstPageDisabled">
+                        <i class="fa fa-angle-double-left"></i>
+                    </button>
+                </li>
+                <li class="page-item">
+                    <button class="page-link" @onclick="GoToPreviousPage" disabled="@PreviousPageDisabled">
+                        <i class="fa fa-angle-left"></i>
+                    </button>
+                </li>
+
+                @foreach (var pageNumber in GetPageNumbers())
+                {
+                    <li class="@(currentPage == pageNumber ? "active" : "") @(IsAdjacent(pageNumber) ? "adjacent" : "")">
+                        <button class="page-link" @onclick="@(() => GoToPage(pageNumber))">@pageNumber</button>
+                    </li>
+                }
+
+                <li class="page-item">
+                    <button class="page-link" @onclick="GoToNextPage" disabled="@NextPageDisabled">
+                        <i class="fa fa-angle-right"></i>
+                    </button>
+                </li>
+                <li class="page-item last-page">
+                    <button class="page-link" @onclick="GoToLastPage" disabled="@LastPageDisabled">
+                        <i class="fa fa-angle-double-right"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+
+        @* <nav aria-label="Page navigation" class="pagination-wrapper"> *@
+        @*     <ul class="pagination-controls"> *@
+        @*         <li class="page-item"> *@
+        @*             <button class="page-link" @onclick="GoToFirstPage" disabled="@FirstPageDisabled"> *@
+        @*                 <i class="fa fa-angle-double-left"></i> *@
+        @*             </button> *@
+        @*         </li> *@
+        @*         <li class="page-item"> *@
+        @*             <button class="page-link" @onclick="GoToPreviousPage" disabled="@PreviousPageDisabled"> *@
+        @*                 <i class="fa fa-angle-left"></i> *@
+        @*             </button> *@
+        @*         </li> *@
+        @*          *@
+        @*         @foreach (var pageNumber in GetPageNumbers()) *@
+        @*         { *@
+        @*             <li class="@(currentPage == pageNumber ? "active" : "") @(IsAdjacent(pageNumber) ? "adjacent" : "")"> *@
+        @*                 <button class="page-link" @onclick="@(() => GoToPage(pageNumber))">@pageNumber</button> *@
+        @*             </li> *@
+        @*         } *@
+        @* *@
+        @*         <li class="page-item"> *@
+        @*             <button class="page-link" @onclick="GoToNextPage" disabled="@NextPageDisabled"> *@
+        @*                 <i class="fa fa-angle-right"></i> *@
+        @*             </button> *@
+        @*         </li> *@
+        @*         <li class="page-item"> *@
+        @*             <button class="page-link" @onclick="GoToLastPage" disabled="@LastPageDisabled"> *@
+        @*                 <i class="fa fa-angle-double-right"></i> *@
+        @*             </button> *@
+        @*         </li> *@
+        @*     </ul> *@
+        @* </nav> *@
+        
+    }
+    else if (currentPage < totalPages)
+    {
+        <button @onclick="LoadMorePosts" class="load-more">Load More</button>
+    }
+    
+    <button @onclick="TogglePagination" class="toggle-pagination">@TogglePaginationText</button>
+    
 }
 </div>
 
@@ -52,8 +132,43 @@ else
     private bool sortingOrder = true; // true for Descending, false for Ascending
     private string searchTerm = "";
     private bool showSearch = false; // Controls the visibility of the search box
+    private int pageSize = 10;
+    private int currentPage = 1;
+    private int totalPages = 10; // Assume a total of 10 pages for the example
+    private int visiblePageLinks = 5; // Number of visible page links
+    
+    private bool isPaginationEnabled = true; // Default pagination to be enabled
+    private string TogglePaginationText => isPaginationEnabled ? "Disable Pagination" : "Enable Pagination";
+
+    private bool FirstPageDisabled => currentPage == 1;
+    private bool PreviousPageDisabled => currentPage == 1;
+    private bool NextPageDisabled => currentPage == totalPages;
+    private bool LastPageDisabled => currentPage == totalPages;
+    
+    private bool isMobileScreen = false; // Flag to determine if the current view is on a mobile screen
+    
+    private bool isLoadingMorePosts = false; // To prevent multiple simultaneous loads
+
 
     protected override async Task OnInitializedAsync()
+    {
+        await RefreshPosts();
+        filteredPosts = blogPosts.OrderByDescending(post => post.Date).ToList();
+        // Apply initial pagination
+        ApplyPagination();
+    }
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            isMobileScreen = await JSRuntime.InvokeAsync<bool>("siteUtility.isMobile");
+            await JSRuntime.InvokeVoidAsync("siteUtility.scrollToTop");
+        }
+    }
+
+    
+    private async Task RefreshPosts()
     {
         blogPosts = await BlogService.GetBlogPostsAsync();
         foreach (var post in blogPosts)
@@ -61,14 +176,39 @@ else
             var contents = new List<string>();
             foreach (var contentFile in post.ContentFiles)
             {
-                var content = await BlogService.GetContentFileAsync(contentFile); // Ensure this method is correctly fetching the content
+                var content = await BlogService.GetContentFileAsync(contentFile);
                 contents.Add(content);
             }
 
-            post.ContentFiles = contents; // Set the loaded content
+            post.ContentFiles = contents;
         }
 
-        filteredPosts = blogPosts.OrderByDescending(post => post.Date).ToList();
+        currentPage = 1; // Reset to the first page on refresh
+        ApplyPagination();
+        await JSRuntime.InvokeVoidAsync("siteUtility.scrollToTop");
+    }
+
+    
+    private async Task LoadMorePosts()
+    {
+        if (currentPage >= totalPages || isLoadingMorePosts)
+        {
+            return; // No more posts to load or already loading
+        }
+
+        isLoadingMorePosts = true;
+        currentPage++; // Move to the next page
+
+        // Assume FetchPostsAsync is your method to fetch posts, accepting page number and page size as parameters
+        var newPosts = await BlogService.FetchPostsAsync(currentPage, pageSize); 
+        
+        if (newPosts != null && newPosts.Any())
+        {
+            filteredPosts = filteredPosts.Concat(newPosts); // Append new posts to the existing list
+        }
+
+        isLoadingMorePosts = false;
+        StateHasChanged(); // Refresh the UI with the new posts
     }
     
     private async Task OnSearchTermChanged(ChangeEventArgs e)
@@ -96,4 +236,103 @@ else
         StateHasChanged();
     }
     
+    private async void GoToFirstPage()
+    {
+        currentPage = 1;
+        ApplyPagination();
+        await JSRuntime.InvokeVoidAsync("siteUtility.scrollToTop");
+
+    }
+
+    private async void GoToPreviousPage()
+    {
+        if (currentPage > 1)
+        {
+            currentPage--;
+            ApplyPagination();
+            await JSRuntime.InvokeVoidAsync("siteUtility.scrollToTop");
+        }
+    }
+
+    private async void GoToNextPage()
+    {
+        if (currentPage < totalPages)
+        {
+            currentPage++;
+            ApplyPagination();
+            await JSRuntime.InvokeVoidAsync("siteUtility.scrollToTop");
+        }
+    }
+
+    private async void GoToLastPage()
+    {
+        currentPage = totalPages;
+        ApplyPagination();
+        await JSRuntime.InvokeVoidAsync("siteUtility.scrollToTop");
+    }
+    
+    private async void GoToPage(int pageNumber)
+    {
+        if (pageNumber >= 1 && pageNumber <= totalPages && pageNumber != currentPage)
+        {
+            currentPage = pageNumber;
+            ApplyPagination();
+            await JSRuntime.InvokeVoidAsync("siteUtility.scrollToTop");
+        }
+    }
+    
+    private bool IsAdjacent(int pageNumber)
+    {
+        int adjacentRange = isMobileScreen ? 1 : 2; // Show 1 page before and after the current on mobile, 2 for desktop
+        return Math.Abs(currentPage - pageNumber) <= adjacentRange;
+    }
+
+    
+    private IEnumerable<int> GetPageNumbers()
+    {
+        int startPage = Math.Max(1, currentPage - visiblePageLinks / 2);
+        int endPage = Math.Min(totalPages, startPage + visiblePageLinks - 1);
+
+        if (isMobileScreen)
+        {
+            // Assuming 'isMobileScreen' is a flag that determines if the current view is on a mobile screen
+            int mobileVisiblePageLinks = 3; // For example, show only 3 page links on mobile screens
+            startPage = Math.Max(1, currentPage - mobileVisiblePageLinks / 2);
+            endPage = Math.Min(totalPages, startPage + mobileVisiblePageLinks - 1);
+        }
+
+        return Enumerable.Range(startPage, endPage - startPage + 1);
+    }
+    
+    private void TogglePagination()
+    {
+        isPaginationEnabled = !isPaginationEnabled;
+        if (isPaginationEnabled)
+        {
+            ApplyPagination();
+        }
+        else
+        {
+            StateHasChanged(); // Update the UI to show all posts
+        }
+    }
+
+    private void ApplyPagination(IEnumerable<BlogPost> posts = null)
+    {
+        if (isPaginationEnabled)
+        {
+            posts ??= blogPosts;
+            var paginationResult = PaginationService.Paginate(posts, currentPage, pageSize);
+            filteredPosts = paginationResult.Items;
+            totalPages = paginationResult.TotalPages;
+        }
+        else
+        {
+            // When pagination is disabled, show all posts and reset page controls
+            filteredPosts = blogPosts;
+            totalPages = 1;
+            currentPage = 1;
+        }
+        StateHasChanged();
+    }
 }
