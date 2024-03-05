@@ -1,11 +1,12 @@
 ﻿using System.Net.Http.Json;
 using Monydragon_Portfolios.Models;
+using Monydragons_Portfolio.Services.Content.Interface;
 
 namespace Monydragons_Portfolio.Services;
 
-public class BlogService
+public class BlogService : IBlogService
 {
-    private readonly HttpClient _httpClient;
+    protected readonly HttpClient _httpClient;
 
     public BlogService(HttpClient httpClient)
     {
@@ -14,7 +15,7 @@ public class BlogService
 
     public async Task<List<BlogPost>> GetBlogPostsAsync()
     {
-        return await _httpClient.GetFromJsonAsync<List<BlogPost>>("blog/_MonydragonBlogContent.json");
+        return await _httpClient.GetFromJsonAsync<List<BlogPost>>("blog/_MonydragonBlogContent.json") ?? new List<BlogPost>();
     }
 
     public async Task<string> GetContentFileAsync(string contentFile)
