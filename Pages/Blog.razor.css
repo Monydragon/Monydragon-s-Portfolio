@@ -66,7 +66,7 @@
 }
 
 .blog-container {
-    margin-top: 120px; /* Adjust based on the combined height of your header and search area */
+    margin-top: 15px; /* Adjust based on the combined height of your header and search area */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -100,35 +100,43 @@ pre {
 /* Responsive adjustments for mobile */
 @media (max-width: 768px) {
     .sticky-header {
-        flex-direction: column;
+        flex-direction: column; /* Stack elements vertically */
         text-align: center;
     }
 
     .sticky-search {
         top: auto; /* Adjust if needed for mobile layout */
+        display: flex; /* Use flexbox for centering */
+        flex-direction: column; /* Stack children elements */
+        align-items: center; /* Align children elements in the center */
+        width: 100%; /* Take full width */
+        padding: 0.5rem 0; /* Padding on top and bottom */
     }
 
     .search-area {
-        width: 100%;
-        justify-content: center; /* Center the search area on small screens */
+        flex-direction: column; /* Stack input field and buttons vertically */
+        align-items: center; /* Center align search elements */
+        gap: 10px; /* Space between search elements */
+    }
+
+    .search-area input, .search-area button {
+        display: block; /* Show the input and button */
+        width: 90%; /* Slightly less than full width for aesthetics */
+        margin-bottom: 0.5rem; /* Space below each search element */
     }
 
     .search-toggle {
-        position: static;
-        margin-top: 10px;
+        position: static; /* Default static position */
+        margin-top: 0.5rem; /* Space above the search icon */
+        order: -1; /* Bring search icon above input field and button */
     }
 
     .blog-container {
-        margin-top: 160px; /* Adjust based on the height of the header and search bar on mobile */
+        margin-top: 15px; /* Adjust based on the height of the header and search bar on mobile */
     }
 
     .blog-post {
-        width: 95%;
-        margin: 10px; /* Smaller margins on mobile */
+        width: 95%; /* Almost full width but with a little margin */
+        margin: 10px; /* Margin around each post */
     }
-
-    .search-area input, .search-area select, .search-area button {
-        width: 100%; /* Full width for smaller screens */
-    }
-    
 }
