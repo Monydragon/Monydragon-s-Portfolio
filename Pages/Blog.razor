@@ -13,11 +13,11 @@
         @if (showSearch)
         {
             <input type="text" @bind="searchTerm" @oninput="OnSearchTermChanged" placeholder="Search posts..." />
-            <button @onclick="ToggleSortingOrder">@($"{(sortingOrder ? "Descending" : "Ascending")}")</button>
+            <button class="button primary large" @onclick="ToggleSortingOrder">@($"{(sortingOrder ? "Descending" : "Ascending")}")</button>
         }
         <div class="icons-container">
             <button @onclick="ToggleSearch" class="search-toggle"><i class="fa fa-search"></i></button>
-            <button @onclick="RefreshPosts" class="refresh-button"><i class="fas fa-sync-alt"></i></button>
+            <button @onclick="RefreshPosts" class="refresh-button"><i class="fas fa-sync"></i></button>
         </div>
 
     </div>
@@ -81,47 +81,13 @@ else
                 </li>
             </ul>
         </nav>
-
-        @* <nav aria-label="Page navigation" class="pagination-wrapper"> *@
-        @*     <ul class="pagination-controls"> *@
-        @*         <li class="page-item"> *@
-        @*             <button class="page-link" @onclick="GoToFirstPage" disabled="@FirstPageDisabled"> *@
-        @*                 <i class="fa fa-angle-double-left"></i> *@
-        @*             </button> *@
-        @*         </li> *@
-        @*         <li class="page-item"> *@
-        @*             <button class="page-link" @onclick="GoToPreviousPage" disabled="@PreviousPageDisabled"> *@
-        @*                 <i class="fa fa-angle-left"></i> *@
-        @*             </button> *@
-        @*         </li> *@
-        @*          *@
-        @*         @foreach (var pageNumber in GetPageNumbers()) *@
-        @*         { *@
-        @*             <li class="@(currentPage == pageNumber ? "active" : "") @(IsAdjacent(pageNumber) ? "adjacent" : "")"> *@
-        @*                 <button class="page-link" @onclick="@(() => GoToPage(pageNumber))">@pageNumber</button> *@
-        @*             </li> *@
-        @*         } *@
-        @* *@
-        @*         <li class="page-item"> *@
-        @*             <button class="page-link" @onclick="GoToNextPage" disabled="@NextPageDisabled"> *@
-        @*                 <i class="fa fa-angle-right"></i> *@
-        @*             </button> *@
-        @*         </li> *@
-        @*         <li class="page-item"> *@
-        @*             <button class="page-link" @onclick="GoToLastPage" disabled="@LastPageDisabled"> *@
-        @*                 <i class="fa fa-angle-double-right"></i> *@
-        @*             </button> *@
-        @*         </li> *@
-        @*     </ul> *@
-        @* </nav> *@
-        
     }
     else if (currentPage < totalPages)
     {
-        <button @onclick="LoadMorePosts" class="load-more">Load More</button>
+        <button  @onclick="LoadMorePosts" class="button primary large load-more">Load More</button>
     }
     
-    <button @onclick="TogglePagination" class="toggle-pagination">@TogglePaginationText</button>
+    <button class="button primary large toggle-pagination" @onclick="TogglePagination">@TogglePaginationText</button>
     
 }
 </div>
@@ -199,17 +165,29 @@ else
         isLoadingMorePosts = true;
         currentPage++; // Move to the next page
 
-        // Assume FetchPostsAsync is your method to fetch posts, accepting page number and page size as parameters
         var newPosts = await BlogService.FetchPostsAsync(currentPage, pageSize); 
-        
+    
         if (newPosts != null && newPosts.Any())
         {
+            // Load the actual content for each content file
+            foreach (var post in newPosts)
+            {
+                var contents = new List<string>();
+                foreach (var contentFile in post.ContentFiles)
+                {
+                    var content = await BlogService.GetContentFileAsync(contentFile);
+                    contents.Add(content);
+                }
+                post.ContentFiles = contents;
+            }
+
             filteredPosts = filteredPosts.Concat(newPosts); // Append new posts to the existing list
         }
 
         isLoadingMorePosts = false;
         StateHasChanged(); // Refresh the UI with the new posts
     }
+
     
     private async Task OnSearchTermChanged(ChangeEventArgs e)
     {

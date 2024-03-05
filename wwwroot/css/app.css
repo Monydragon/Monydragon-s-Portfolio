@@ -44,12 +44,6 @@ a, .btn-link {
     color: #0071c1;
 }
 
-.btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
-}
-
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
@@ -265,22 +259,53 @@ a:hover {
     gap: 10px; /* Spacing between buttons */
 }
 
+./* General button styling */
 .button {
-    text-decoration: none;
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
-    padding: 10px 15px; /* Adjust padding as needed */
-    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 4px;
+    background-color: #5C6BC0; /* A pleasant shade of indigo; adjust as needed */
+    color: white;
+    font-size: 1rem;
+    text-transform: uppercase; /* Capitalize text for emphasis */
     cursor: pointer;
-    transition: background-color 0.2s;
-    font-weight: bold;
-    width: auto; /* Adjust width as needed or remove for width based on content */
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* subtle shadow for depth */
+    display: inline-block; /* allows for margin settings */
+    text-align: center; /* ensures text in the center */
+}
+
+/* Smaller buttons for pagination */
+.button.small {
+    padding: 5px 10px;
+    font-size: 0.875rem;
+}
+
+/* Larger buttons for primary actions */
+.button.large {
+    padding: 15px 30px;
+    font-size: 1.125rem;
 }
 
 .button:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
+    background-color: #3949AB; /* Darken button on hover */
+}
+
+.button:disabled {
+    background-color: #9E9E9E; /* Grey out button when disabled */
+    cursor: not-allowed; /* Change cursor to indicate disabled state */
+}
+
+.button.active {
+    background-color: #303F9F; /* Even darker for the active state */
+    box-shadow: none; /* Remove shadow for an "inset" look */
+}
+
+/* Apply this class to the button you want to emphasize as the primary action */
+.button.primary {
+    background-color: #3949AB;
+    color: #fff;
 }
 
 .button.resume-button {
@@ -378,5 +403,9 @@ a:hover {
         max-width: 80%; /* Max width to prevent it from bleeding off-screen */
         white-space: normal; /* Allows text to wrap */
     }
-    
+
+    .button {
+        padding: 8px 16px; /* Slightly reduce padding on mobile */
+        font-size: 0.875rem; /* Slightly reduce font size on mobile */
+    }
 }
