@@ -23,14 +23,82 @@
       <_ContentIncludedByDefault Remove="ConsoleSignalRServer\obj\ConsoleSignalRServer.csproj.nuget.dgspec.json" />
       <_ContentIncludedByDefault Remove="ConsoleSignalRServer\obj\project.assets.json" />
       <_ContentIncludedByDefault Remove="ConsoleSignalRServer\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\bin\Release\net8.0\publish\web.config" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp.Client\bin\Debug\net8.0\MonydagonPortfolioWebApp.Client.staticwebassets.runtime.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp.Client\bin\Debug\net8.0\wwwroot\_framework\blazor.boot.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp.Client\bin\Release\net8.0\MonydagonPortfolioWebApp.Client.staticwebassets.runtime.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp.Client\bin\Release\net8.0\wwwroot\_framework\blazor.boot.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp.Client\obj\Debug\net8.0\blazor.boot.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp.Client\obj\Debug\net8.0\blazor.build.boot-extension.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp.Client\obj\Debug\net8.0\MonydagonPortfolioWebApp.Client.sourcelink.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp.Client\obj\Debug\net8.0\staticwebassets.build.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp.Client\obj\Debug\net8.0\staticwebassets.development.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp.Client\obj\Debug\net8.0\staticwebassets.pack.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp.Client\obj\MonydagonPortfolioWebApp.Client.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp.Client\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp.Client\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp.Client\obj\Release\net8.0\blazor.boot.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp.Client\obj\Release\net8.0\blazor.build.boot-extension.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp.Client\obj\Release\net8.0\blazor.publish.boot-extension.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp.Client\obj\Release\net8.0\blazor.publish.boot.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp.Client\obj\Release\net8.0\MonydagonPortfolioWebApp.Client.sourcelink.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp.Client\obj\Release\net8.0\staticwebassets.build.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp.Client\obj\Release\net8.0\staticwebassets.development.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp.Client\obj\Release\net8.0\staticwebassets.pack.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp.Client\obj\Release\net8.0\staticwebassets.publish.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\bin\Debug\net8.0\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\bin\Debug\net8.0\appsettings.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\bin\Debug\net8.0\BlazorDebugProxy\BrowserDebugHost.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\bin\Debug\net8.0\MonydagonPortfolioWebApp.Client.staticwebassets.runtime.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\bin\Debug\net8.0\MonydagonPortfolioWebApp.deps.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\bin\Debug\net8.0\MonydagonPortfolioWebApp.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\bin\Debug\net8.0\MonydagonPortfolioWebApp.staticwebassets.runtime.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\bin\Release\net8.0\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\bin\Release\net8.0\appsettings.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\bin\Release\net8.0\BlazorDebugProxy\BrowserDebugHost.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\bin\Release\net8.0\MonydagonPortfolioWebApp.Client.staticwebassets.runtime.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\bin\Release\net8.0\MonydagonPortfolioWebApp.deps.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\bin\Release\net8.0\MonydagonPortfolioWebApp.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\bin\Release\net8.0\MonydagonPortfolioWebApp.staticwebassets.runtime.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\bin\Release\net8.0\publish\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\bin\Release\net8.0\publish\appsettings.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\bin\Release\net8.0\publish\BlazorDebugProxy\BrowserDebugHost.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\bin\Release\net8.0\publish\data\random-facts.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\bin\Release\net8.0\publish\MonydagonPortfolioWebApp.deps.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\bin\Release\net8.0\publish\MonydagonPortfolioWebApp.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\obj\Debug\net8.0\MonydagonPortfolioWebApp.sourcelink.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\obj\Debug\net8.0\staticwebassets.build.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\obj\Debug\net8.0\staticwebassets.development.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\obj\Debug\net8.0\staticwebassets.pack.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\obj\MonydagonPortfolioWebApp.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\obj\Release\net8.0\MonydagonPortfolioWebApp.sourcelink.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\obj\Release\net8.0\staticwebassets.build.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\obj\Release\net8.0\staticwebassets.development.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\obj\Release\net8.0\staticwebassets.pack.json" />
+      <_ContentIncludedByDefault Remove="MonydagonPortfolioWebApp\MonydagonPortfolioWebApp\obj\Release\net8.0\staticwebassets.publish.json" />
     </ItemGroup>
 
     <ItemGroup>
       <None Include="wwwroot\web.config.xml" />
+      <None Remove="MonydagonPortfolioWebApp\**" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="wwwroot\resume\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="MonydagonPortfolioWebApp\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="MonydagonPortfolioWebApp\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="MonydagonPortfolioWebApp\**" />
     </ItemGroup>
 
     <Target Name="PostPublishActions" AfterTargets="Publish">
