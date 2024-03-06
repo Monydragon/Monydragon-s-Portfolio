@@ -1,4 +1,4 @@
-﻿@page "/blog"
+﻿@page "/devblog"
 @inject IBlogService BlogService
 @inject IContentService BlogContentService
 @inject IFilteringSortingService FilteringSortingService
@@ -17,7 +17,7 @@
         }
         <div class="icons-container">
             <button @onclick="ToggleSearch" class="search-toggle"><i class="fa fa-search"></i></button>
-            <button @onclick="RefreshPosts" class="refresh-button"><i class="fas fa-sync"></i></button>
+            <button @onclick="ForceRefreshPosts" class="refresh-button"><i class="fas fa-sync"></i></button>
         </div>
 
     </div>
@@ -153,6 +153,14 @@ else
         currentPage = 1; // Reset to the first page on refresh
         ApplyPagination();
         await JSRuntime.InvokeVoidAsync("siteUtility.scrollToTop");
+
+    }
+    
+    private async Task ForceRefreshPosts()
+    {
+        blogPosts = null;
+        await RefreshPosts();
+        await JSRuntime.InvokeVoidAsync("siteUtility.refreshPage");
     }
 
     

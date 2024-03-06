@@ -6,6 +6,10 @@
     scrollToTop() {
         window.scrollTo(0, 0);
     }
+    
+    refreshPage() {
+        window.location.reload(true); // The 'true' argument forces the browser to reload from the server, not the cache.
+    }
 }
 
 // Create a global instance of the class

@@ -26,6 +26,10 @@
                     <match url="skills" />
                     <action type="Rewrite" url="/" />
                 </rule>
+                <rule name="pageroute-devblog" patternSyntax="Wildcard">
+                    <match url="devblog" />
+                    <action type="Rewrite" url="/" />
+                </rule>
             </rules>
         </rewrite>
     </system.webServer>
