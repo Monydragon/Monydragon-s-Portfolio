@@ -9,10 +9,10 @@
     <div class="sticky-header">
         <h1>Mony Dragon's Development Blog</h1>
     </div>
-    <div class="search-area">
+    <div class="search-area @collapsedClass">
         @if (showSearch)
         {
-            <input type="text" @bind="searchTerm" @oninput="OnSearchTermChanged" placeholder="Search posts..." />
+            <input type="text" class="search-input-large search-input-expanded" @bind="searchTerm" @oninput="OnSearchTermChanged" placeholder="Search posts..." />
             <button class="button primary large" @onclick="ToggleSortingOrder">@($"{(sortingOrder ? "Descending" : "Ascending")}")</button>
         }
         <div class="icons-container">
@@ -84,10 +84,10 @@ else
     }
     else if (currentPage < totalPages)
     {
-        <button  @onclick="LoadMorePosts" class="button primary large load-more">Load More</button>
+    <button @onclick="LoadMorePosts" class="button primary large load-more spaced-button">Load More</button>
     }
     
-    <button class="button primary large toggle-pagination" @onclick="TogglePagination">@TogglePaginationText</button>
+    <button @onclick="TogglePagination" class="button primary large toggle-pagination spaced-button">@TogglePaginationText</button>
     
 }
 </div>
@@ -105,6 +105,8 @@ else
     
     private bool isPaginationEnabled = true; // Default pagination to be enabled
     private string TogglePaginationText => isPaginationEnabled ? "Disable Pagination" : "Enable Pagination";
+    private string collapsedClass => !showSearch ? "collapsed" : "expanded";
+
 
     private bool FirstPageDisabled => currentPage == 1;
     private bool PreviousPageDisabled => currentPage == 1;
@@ -119,9 +121,6 @@ else
     protected override async Task OnInitializedAsync()
     {
         await RefreshPosts();
-        filteredPosts = blogPosts.OrderByDescending(post => post.Date).ToList();
-        // Apply initial pagination
-        ApplyPagination();
     }
     
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -137,6 +136,8 @@ else
     private async Task RefreshPosts()
     {
         blogPosts = await BlogService.GetBlogPostsAsync();
+        
+        blogPosts = sortingOrder ? blogPosts.OrderByDescending(post => post.Date) : blogPosts.OrderBy(post => post.Date);
         foreach (var post in blogPosts)
         {
             var contents = new List<string>();
@@ -198,6 +199,7 @@ else
     private async Task ToggleSortingOrder()
     {
         sortingOrder = !sortingOrder;
+        blogPosts = sortingOrder ? blogPosts.OrderByDescending(post => post.Date) : blogPosts.OrderBy(post => post.Date);
         await ApplyFilters(); // Reapply filters with the new sort order
     }
     
@@ -299,18 +301,32 @@ else
     {
         if (isPaginationEnabled)
         {
-            posts ??= blogPosts;
+            // If pagination is enabled, paginate the blogPosts or the provided posts collection.
+            posts ??= blogPosts; // Default to all blog posts if no specific collection is passed.
+
+            // Use the PaginationService to paginate the posts.
             var paginationResult = PaginationService.Paginate(posts, currentPage, pageSize);
+        
+            // Set the filteredPosts to the paginated result items.
             filteredPosts = paginationResult.Items;
+
+            // Set the totalPages to the paginated result total pages.
             totalPages = paginationResult.TotalPages;
         }
         else
         {
-            // When pagination is disabled, show all posts and reset page controls
-            filteredPosts = blogPosts;
+            // When pagination is disabled, show all posts and reset page controls.
+            filteredPosts = sortingOrder 
+                ? blogPosts.OrderByDescending(post => post.Date).ToList() 
+                : blogPosts.OrderBy(post => post.Date).ToList();
+
+            // Reset totalPages and currentPage for non-paginated view.
             totalPages = 1;
             currentPage = 1;
         }
+
+        // Update the UI to reflect the changes.
         StateHasChanged();
     }
+
 }
