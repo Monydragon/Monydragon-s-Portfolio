@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Json;
 using Monydragon_Portfolios.Models;
+using Monydragons_Portfolio.Common;
 using Monydragons_Portfolio.Services.Content.Interface;
 
 namespace Monydragons_Portfolio.Services;
@@ -28,7 +29,17 @@ public class BlogService : IBlogService
 
     public async Task<List<BlogPost>> GetBlogPostsAsync()
     {
-        return await _httpClient.GetFromJsonAsync<List<BlogPost>>("blog/_MonydragonBlogContent.json") ?? new List<BlogPost>();
+        try
+        {
+            var response = await _httpClient.GetFromJsonAsync<List<BlogPost>>(AppConstants.DevBlogManifestPath)  ?? new List<BlogPost>();
+            return response;        
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Error fetching blog posts: " + e.Message);
+        }
+        
+        return new List<BlogPost>();
     }
 
     public async Task<string> GetContentFileAsync(string contentFile)

@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Monydragons-Portfolio.Common\Monydragons-Portfolio.Common.csproj" />
       <ProjectReference Include="..\Monydragons-Portfolio.Models\Monydragons-Portfolio.Models.csproj" />
     </ItemGroup>
 

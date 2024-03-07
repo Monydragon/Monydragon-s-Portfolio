@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monydragons-Portfolio.Model
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monydragons-Portfolio.Services", "Monydragons-Portfolio.Services\Monydragons-Portfolio.Services.csproj", "{CDA29802-A685-4403-BB98-98422FEC7258}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monydragons-Portfolio.BuildConsole", "Monydragons-Portfolio.BuildConsole\Monydragons-Portfolio.BuildConsole.csproj", "{43CE413A-53CF-4F7A-BEB5-2E72FA83827F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monydragons-Portfolio.Common", "Monydragons-Portfolio.Common\Monydragons-Portfolio.Common.csproj", "{B8425D04-0CF8-4AC5-BACB-2044B2F71A8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,9 +26,9 @@ Global
 		{CDA29802-A685-4403-BB98-98422FEC7258}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDA29802-A685-4403-BB98-98422FEC7258}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDA29802-A685-4403-BB98-98422FEC7258}.Release|Any CPU.Build.0 = Release|Any CPU
-		{43CE413A-53CF-4F7A-BEB5-2E72FA83827F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43CE413A-53CF-4F7A-BEB5-2E72FA83827F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{43CE413A-53CF-4F7A-BEB5-2E72FA83827F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{43CE413A-53CF-4F7A-BEB5-2E72FA83827F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8425D04-0CF8-4AC5-BACB-2044B2F71A8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8425D04-0CF8-4AC5-BACB-2044B2F71A8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8425D04-0CF8-4AC5-BACB-2044B2F71A8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8425D04-0CF8-4AC5-BACB-2044B2F71A8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
