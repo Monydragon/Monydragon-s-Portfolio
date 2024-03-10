@@ -1,6 +1,0 @@
-🎉 Embarking on a year-long coding journey with my partner-in-code, (Stormi Dragon) Niki Miller Together, we're building 'Puppy Tasks' with #DotNETMAUI – a daily task manager with a playful twist. 🐾 #CoupleGoals
-👩‍💻👨‍💻 Day 1 of 2024, and we're off to a strong start:
-✅ User login & profile creation are up and running!
-🗓️ Progress Update: 2024-01-01
-Join us as we commit to #CodeADay challenge and make 'Puppy Tasks' your future go-to for staying organized. What better way to start the #NewYear2024?
-#DeveloperDiary #CodeNewbie #TechTwosome #ProductivityPups
