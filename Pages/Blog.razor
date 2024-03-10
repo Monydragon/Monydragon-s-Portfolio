@@ -93,11 +93,11 @@ else
 </div>
 
 @code {
-    private IEnumerable<BlogPost> blogPosts = null;
-    private IEnumerable<BlogPost> filteredPosts = null;
+    private IEnumerable<BlogPost> blogPosts;
+    private IEnumerable<BlogPost> filteredPosts;
     private bool sortingOrder = true; // true for Descending, false for Ascending
     private string searchTerm = "";
-    private bool showSearch = false; // Controls the visibility of the search box
+    private bool showSearch; // Controls the visibility of the search box
     private int pageSize = 10;
     private int currentPage = 1;
     private int totalPages = 10; // Assume a total of 10 pages for the example
@@ -113,9 +113,9 @@ else
     private bool NextPageDisabled => currentPage == totalPages;
     private bool LastPageDisabled => currentPage == totalPages;
     
-    private bool isMobileScreen = false; // Flag to determine if the current view is on a mobile screen
+    private bool isMobileScreen; // Flag to determine if the current view is on a mobile screen
     
-    private bool isLoadingMorePosts = false; // To prevent multiple simultaneous loads
+    private bool isLoadingMorePosts; // To prevent multiple simultaneous loads
 
 
     protected override async Task OnInitializedAsync()

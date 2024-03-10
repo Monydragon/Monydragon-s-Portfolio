@@ -1,17 +1,43 @@
 ﻿@page "/contact"
+@using System.Text
+@inject NavigationManager NavigationManager
 
 <PageTitle>Contact</PageTitle>
 <div class="card">
     <img src="Images/MonyDragonProfile2024Resize.png" alt="Mony Dragon">
-        <div class="links">
-            <a href="https://github.com/Monydragon"><i class="fa fa-github fa-2x"></i></a>
-            <a href="https://monydragon.itch.io"><i class="fa fa-gamepad fa-2x"></i></a>
-            <a href="https://twitter.com/Monydragon"><i class="fa fa-twitter fa-2x"></i></a>
-            <a href="https://www.linkedin.com/in/monydragon"><i class="fa fa-linkedin fa-2x"></i></a>
-            <a href="https://www.facebook.com/Monydragon/"><i class="fa fa-facebook fa-2x"></i></a>
-            <a href="mailto:monydragon@gmail.com?subject=Contact Mony Dragon"><i class="fa fa-envelope fa-2x"></i></a>
-        </div>
+    <div class="links">
+        <a href="https://github.com/Monydragon"><i class="fa fa-github fa-2x"></i></a>
+        <a href="https://monydragon.itch.io"><i class="fa fa-gamepad fa-2x"></i></a>
+        <a href="https://twitter.com/Monydragon"><i class="fa fa-twitter fa-2x"></i></a>
+        <a href="https://www.linkedin.com/in/monydragon"><i class="fa fa-linkedin fa-2x"></i></a>
+        <a href="https://www.facebook.com/Monydragon/"><i class="fa fa-facebook fa-2x"></i></a>
+        <a @onclick="NavigateToMailTo" class="email-link" role="button" tabindex="0">
+            <i class="fa fa-envelope fa-2x"></i>
+        </a>
+    </div>
     <h1>Mony Dragon</h1>
     <p class="title">Software & Game Developer</p>
-
 </div>
+
+@code {
+    private string EncodeEmail(string email)
+    {
+        var emailBytes = Encoding.UTF8.GetBytes(email);
+        return Convert.ToBase64String(emailBytes);
+    }
+
+    private string DecodeEmail(string encodedEmail)
+    {
+        var emailBytes = Convert.FromBase64String(encodedEmail);
+        return Encoding.UTF8.GetString(emailBytes);
+    }
+
+    // Encoded email
+    private string EncodedEmail => EncodeEmail("monydragon@gmail.com");
+
+    private void NavigateToMailTo()
+    {
+        var decodedEmail = DecodeEmail(EncodedEmail);
+        NavigationManager.NavigateTo($"mailto:{decodedEmail}?subject=Contact Mony Dragon", true);
+    }
+}
