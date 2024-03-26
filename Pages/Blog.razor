@@ -1,9 +1,13 @@
 ﻿@page "/blog"
+@using Monydragons_Portfolio.Services.Utility.Interface
 @inject IBlogService BlogService
 @inject IContentService BlogContentService
 @inject IFilteringSortingService FilteringSortingService
 @inject IPaginationService PaginationService
+@inject IPollingService PollingService
 @inject IJSRuntime JSRuntime
+@implements IDisposable
+
 
 <div class="header-container">
     <div class="sticky-header">
@@ -120,6 +124,8 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        // Start polling with a callback to your refresh method
+        PollingService.StartPolling(TimeSpan.FromMinutes(1), RefreshPosts);
         await RefreshPosts();
     }
     
@@ -153,14 +159,15 @@ else
         currentPage = 1; // Reset to the first page on refresh
         ApplyPagination();
         await JSRuntime.InvokeVoidAsync("siteUtility.scrollToTop");
+        StateHasChanged();
 
     }
     
     private async Task ForceRefreshPosts()
     {
         blogPosts = null;
-        await RefreshPosts();
         await JSRuntime.InvokeVoidAsync("siteUtility.refreshPage");
+        await RefreshPosts();
     }
 
     
@@ -335,6 +342,12 @@ else
 
         // Update the UI to reflect the changes.
         StateHasChanged();
+    }
+    
+    public void Dispose()
+    {
+        // Stop polling when the component is disposed
+        PollingService.StopPolling();
     }
 
 }
