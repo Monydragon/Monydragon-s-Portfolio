@@ -29,13 +29,13 @@
 
 
 <div class="blog-container">
-@if (blogPosts == null)
+@if (allPosts == null)
 {
     <p>Loading...</p>
 }
 else
 {
-    @foreach (var post in filteredPosts)
+    @foreach (var post in displayedPosts)
     {
         <div class="blog-post">
             <h2>@BlogContentService.Linkify(BlogContentService.GetTitleWithoutDate(post.Title))</h2>
@@ -86,9 +86,9 @@ else
             </ul>
         </nav>
     }
-    else if (currentPage < totalPages)
+    @if (!isPaginationEnabled && morePostsAvailable)
     {
-    <button @onclick="LoadMorePosts" class="button primary large load-more spaced-button">Load More</button>
+        <button @onclick="LoadMorePosts" class="button primary large load-more spaced-button">Load More</button>
     }
     
     <button @onclick="TogglePagination" class="button primary large toggle-pagination spaced-button">@TogglePaginationText</button>
@@ -97,34 +97,36 @@ else
 </div>
 
 @code {
-    private IEnumerable<BlogPost> blogPosts;
-    private IEnumerable<BlogPost> filteredPosts;
+    private IEnumerable<BlogPost> allPosts; // This holds all your posts
+    private IEnumerable<BlogPost> filteredPosts; // This holds filtered results or all posts if no filter
+    private IEnumerable<BlogPost> displayedPosts; // This holds currently displayed posts (paginated)
     private bool sortingOrder = true; // true for Descending, false for Ascending
     private string searchTerm = "";
     private bool showSearch; // Controls the visibility of the search box
     private int pageSize = 10;
     private int currentPage = 1;
-    private int totalPages = 10; // Assume a total of 10 pages for the example
+    private int totalPages; // Dynamically calculated based on the number of posts
     private int visiblePageLinks = 5; // Number of visible page links
     
-    private bool isPaginationEnabled = true; // Default pagination to be enabled
+    private bool isPaginationEnabled = true;
     private string TogglePaginationText => isPaginationEnabled ? "Disable Pagination" : "Enable Pagination";
     private string collapsedClass => !showSearch ? "collapsed" : "expanded";
 
+    private bool isFiltered = false;
 
     private bool FirstPageDisabled => currentPage == 1;
     private bool PreviousPageDisabled => currentPage == 1;
     private bool NextPageDisabled => currentPage == totalPages;
     private bool LastPageDisabled => currentPage == totalPages;
     
-    private bool isMobileScreen; // Flag to determine if the current view is on a mobile screen
+    private bool isMobileScreen;
     
-    private bool isLoadingMorePosts; // To prevent multiple simultaneous loads
+    private bool isLoadingMorePosts;
+    private bool morePostsAvailable = true; // Initialize to true
 
 
     protected override async Task OnInitializedAsync()
     {
-        // Start polling with a callback to your refresh method
         PollingService.StartPolling(TimeSpan.FromMinutes(1), RefreshPosts);
         await RefreshPosts();
     }
@@ -137,14 +139,19 @@ else
             await JSRuntime.InvokeVoidAsync("siteUtility.scrollToTop");
         }
     }
-
     
     private async Task RefreshPosts()
     {
-        blogPosts = await BlogService.GetBlogPostsAsync();
-        
-        blogPosts = sortingOrder ? blogPosts.OrderByDescending(post => post.Date) : blogPosts.OrderBy(post => post.Date);
-        foreach (var post in blogPosts)
+        var fetchedPosts = await BlogService.GetBlogPostsAsync();
+
+        // Apply initial sorting based on the current sorting order.
+        var sortedPosts = sortingOrder ? fetchedPosts.OrderByDescending(post => post.Date) : fetchedPosts.OrderBy(post => post.Date);
+
+        // Assign sorted posts to allPosts
+        allPosts = sortedPosts;
+
+        // Apply content loading for all posts (this could be optimized based on actual usage scenario)
+        foreach (var post in allPosts)
         {
             var contents = new List<string>();
             foreach (var contentFile in post.ContentFiles)
@@ -152,58 +159,62 @@ else
                 var content = await BlogService.GetContentFileAsync(contentFile);
                 contents.Add(content);
             }
-
             post.ContentFiles = contents;
         }
 
-        currentPage = 1; // Reset to the first page on refresh
-        ApplyPagination();
-        await JSRuntime.InvokeVoidAsync("siteUtility.scrollToTop");
-        StateHasChanged();
+        // If there is a search term, apply the filter; otherwise, display all posts.
+        if (!string.IsNullOrEmpty(searchTerm))
+        {
+            isFiltered = true;
+            // Apply the filter based on the current search term.
+            // Make sure FilteringSortingService.ApplyFiltersAsync can handle empty or null searchTerm appropriately
+            filteredPosts = await FilteringSortingService.ApplyFiltersAsync(allPosts, searchTerm);
+            filteredPosts = sortingOrder ? filteredPosts.OrderByDescending(post => post.Date) : filteredPosts.OrderBy(post => post.Date);
+        }
+        else
+        {
+            isFiltered = false;
+            filteredPosts = allPosts;
+        }
 
+        // Always reset to the first page after a refresh and apply pagination on the filtered or all posts.
+        currentPage = 1;
+        ApplyPagination();
     }
     
     private async Task ForceRefreshPosts()
     {
-        blogPosts = null;
         await JSRuntime.InvokeVoidAsync("siteUtility.refreshPage");
         await RefreshPosts();
     }
-
     
     private async Task LoadMorePosts()
     {
-        if (currentPage >= totalPages || isLoadingMorePosts)
+        if (isLoadingMorePosts)
         {
-            return; // No more posts to load or already loading
+            return; // Already in the process of loading more posts.
         }
 
         isLoadingMorePosts = true;
-        currentPage++; // Move to the next page
 
-        var newPosts = await BlogService.FetchPostsAsync(currentPage, pageSize); 
-    
-        if (newPosts != null && newPosts.Any())
+        if (!isPaginationEnabled)
         {
-            // Load the actual content for each content file
-            foreach (var post in newPosts)
-            {
-                var contents = new List<string>();
-                foreach (var contentFile in post.ContentFiles)
-                {
-                    var content = await BlogService.GetContentFileAsync(contentFile);
-                    contents.Add(content);
-                }
-                post.ContentFiles = contents;
-            }
-
-            filteredPosts = filteredPosts.Concat(newPosts); // Append new posts to the existing list
+            var additionalPosts = isFiltered ? filteredPosts.Skip(displayedPosts.Count()).Take(pageSize) 
+                : allPosts.Skip(displayedPosts.Count()).Take(pageSize);
+            displayedPosts = displayedPosts.Concat(additionalPosts).ToList();
+        
+            morePostsAvailable = displayedPosts.Count() < (isFiltered ? filteredPosts.Count() : allPosts.Count());
+        }
+        else
+        {
+            // If pagination is somehow re-enabled, this ensures it behaves correctly.
+            currentPage++;
+            ApplyPagination();
         }
 
         isLoadingMorePosts = false;
-        StateHasChanged(); // Refresh the UI with the new posts
+        StateHasChanged(); // Refresh the UI with the newly loaded posts.
     }
-
     
     private async Task OnSearchTermChanged(ChangeEventArgs e)
     {
@@ -214,7 +225,6 @@ else
     private async Task ToggleSortingOrder()
     {
         sortingOrder = !sortingOrder;
-        blogPosts = sortingOrder ? blogPosts.OrderByDescending(post => post.Date) : blogPosts.OrderBy(post => post.Date);
         await ApplyFilters(); // Reapply filters with the new sort order
     }
     
@@ -223,11 +233,40 @@ else
         showSearch = !showSearch;
         StateHasChanged(); // This line might be optional in Blazor Server, but just to ensure UI updates.
     }
-
+    
     private async Task ApplyFilters()
     {
-        filteredPosts = await FilteringSortingService.ApplyFiltersAsync(blogPosts, searchTerm);
-        filteredPosts = await FilteringSortingService.SortPostsAsync(filteredPosts, sortingOrder);
+        if (string.IsNullOrEmpty(searchTerm))
+        {
+            isFiltered = false;
+            filteredPosts = allPosts;
+        }
+        else
+        {
+            isFiltered = true;
+            // Assuming ApplyFiltersAsync and SortPostsAsync are your methods that need to be implemented
+            filteredPosts = await FilteringSortingService.ApplyFiltersAsync(allPosts, searchTerm);
+            if(sortingOrder)
+            {
+                filteredPosts = filteredPosts.OrderByDescending(post => post.Date);
+            }
+            else
+            {
+                filteredPosts = filteredPosts.OrderBy(post => post.Date);
+            }
+        }
+
+        currentPage = 1;
+        ApplyPagination();
+    }
+
+    private void ApplyPagination()
+    {
+        var datasetToPaginate = isFiltered ? filteredPosts : allPosts;
+        var paginationResult = PaginationService.Paginate(datasetToPaginate, currentPage, pageSize);
+        displayedPosts = paginationResult.Items;
+        totalPages = paginationResult.TotalPages;
+
         StateHasChanged();
     }
     
@@ -236,8 +275,15 @@ else
         currentPage = 1;
         ApplyPagination();
         await JSRuntime.InvokeVoidAsync("siteUtility.scrollToTop");
-
     }
+    
+    private async void GoToLastPage()
+    {
+        currentPage = totalPages;
+        ApplyPagination();
+        await JSRuntime.InvokeVoidAsync("siteUtility.scrollToTop");
+    }
+
 
     private async void GoToPreviousPage()
     {
@@ -259,13 +305,6 @@ else
         }
     }
 
-    private async void GoToLastPage()
-    {
-        currentPage = totalPages;
-        ApplyPagination();
-        await JSRuntime.InvokeVoidAsync("siteUtility.scrollToTop");
-    }
-    
     private async void GoToPage(int pageNumber)
     {
         if (pageNumber >= 1 && pageNumber <= totalPages && pageNumber != currentPage)
@@ -276,78 +315,41 @@ else
         }
     }
     
+    private async void TogglePagination()
+    {
+        isPaginationEnabled = !isPaginationEnabled;
+
+        if (!isPaginationEnabled)
+        {
+            var postsToLoad = currentPage * pageSize;
+            var posts = isFiltered ? filteredPosts : allPosts;
+            displayedPosts = posts.Take(postsToLoad).ToList();
+            morePostsAvailable = displayedPosts.Count() < posts.Count();
+        }
+        else
+        {
+            ApplyPagination();
+        }
+
+        StateHasChanged(); // This triggers a re-render
+    }
+    
     private bool IsAdjacent(int pageNumber)
     {
-        int adjacentRange = isMobileScreen ? 1 : 2; // Show 1 page before and after the current on mobile, 2 for desktop
+        int adjacentRange = isMobileScreen ? 1 : 2; // Adjust based on screen size
         return Math.Abs(currentPage - pageNumber) <= adjacentRange;
     }
 
-    
     private IEnumerable<int> GetPageNumbers()
     {
         int startPage = Math.Max(1, currentPage - visiblePageLinks / 2);
         int endPage = Math.Min(totalPages, startPage + visiblePageLinks - 1);
 
-        if (isMobileScreen)
-        {
-            // Assuming 'isMobileScreen' is a flag that determines if the current view is on a mobile screen
-            int mobileVisiblePageLinks = 3; // For example, show only 3 page links on mobile screens
-            startPage = Math.Max(1, currentPage - mobileVisiblePageLinks / 2);
-            endPage = Math.Min(totalPages, startPage + mobileVisiblePageLinks - 1);
-        }
-
         return Enumerable.Range(startPage, endPage - startPage + 1);
-    }
-    
-    private void TogglePagination()
-    {
-        isPaginationEnabled = !isPaginationEnabled;
-        if (isPaginationEnabled)
-        {
-            ApplyPagination();
-        }
-        else
-        {
-            StateHasChanged(); // Update the UI to show all posts
-        }
-    }
-
-    private void ApplyPagination(IEnumerable<BlogPost> posts = null)
-    {
-        if (isPaginationEnabled)
-        {
-            // If pagination is enabled, paginate the blogPosts or the provided posts collection.
-            posts ??= blogPosts; // Default to all blog posts if no specific collection is passed.
-
-            // Use the PaginationService to paginate the posts.
-            var paginationResult = PaginationService.Paginate(posts, currentPage, pageSize);
-        
-            // Set the filteredPosts to the paginated result items.
-            filteredPosts = paginationResult.Items;
-
-            // Set the totalPages to the paginated result total pages.
-            totalPages = paginationResult.TotalPages;
-        }
-        else
-        {
-            // When pagination is disabled, show all posts and reset page controls.
-            filteredPosts = sortingOrder 
-                ? blogPosts.OrderByDescending(post => post.Date).ToList() 
-                : blogPosts.OrderBy(post => post.Date).ToList();
-
-            // Reset totalPages and currentPage for non-paginated view.
-            totalPages = 1;
-            currentPage = 1;
-        }
-
-        // Update the UI to reflect the changes.
-        StateHasChanged();
     }
     
     public void Dispose()
     {
-        // Stop polling when the component is disposed
         PollingService.StopPolling();
     }
-
 }
