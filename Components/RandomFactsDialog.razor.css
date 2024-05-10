@@ -1,0 +1,13 @@
+﻿::deep .dialogTitle{
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+::deep .dialogContent{
+    color: white;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+}

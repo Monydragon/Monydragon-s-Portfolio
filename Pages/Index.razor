@@ -1,5 +1,7 @@
 ﻿@page "/"
-@using System.Text.Json
+@using Monydragons_Portfolio.Components
+@inject IDialogService DialogService
+
 <PageTitle>Home</PageTitle>
 
 <h1 class="center"><strong>Mony Dragon</strong><br></h1>
@@ -52,43 +54,21 @@
     </div>
 </div>
 
-
-
-
 <br/>
 <div class="center">
-    <h3>Random Facts</h3>
-    
-    @if (!string.IsNullOrWhiteSpace(fact))
-    {
-        <h4>Here is a random fact!</h4>
-        <p>@fact</p>
-    }
-    
-    <button class="btn btn-primary" @onclick="GetRandomFact">Get Random Fact (CLICK ME)</button>
+    <MudButton @onclick="ShowRandomFact" Variant="Variant.Filled" Color="Color.Primary">
+        Random Fact
+    </MudButton>
 </div>
 
-
 @code {
-    private string fact;
-
-    [Inject]
-    private HttpClient HttpClient { get; set; }
-
-    private async Task GetRandomFact()
+    private void ShowRandomFact()
     {
-        var factsJson = await HttpClient.GetStringAsync("/data/random-facts.json");
-        var facts = JsonSerializer.Deserialize<List<RandomFact>>(factsJson);
-
-        var random = new Random();
-        var index = random.Next(0, facts.Count);
-        fact = facts[index].fact;
-    }
-
-    public class RandomFact
-    {
-        public string fact { get; set; }
+        DialogService.Show<RandomFactsDialog>("Random Fact", new DialogOptions{CloseButton = true});
     }
 }
+
+
+
 
 

@@ -41,7 +41,7 @@ h1:focus {
 }
 
 a, .btn-link {
-    color: #0071c1;
+    color: cyan;
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
@@ -141,7 +141,7 @@ body {
 }
 
 a {
-    color: #0071c1;
+    color: cyan;
     text-decoration: none;
     transition: color 0.3s ease-in-out;
 }

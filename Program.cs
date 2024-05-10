@@ -5,6 +5,7 @@ using Monydragons_Portfolio.Services;
 using Monydragons_Portfolio.Services.Content.Interface;
 using Monydragons_Portfolio.Services.Utility;
 using Monydragons_Portfolio.Services.Utility.Interface;
+using MudBlazor.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
@@ -17,5 +18,7 @@ builder.Services.AddScoped<IContentService, BlogContentService>();
 builder.Services.AddScoped<IFilteringSortingService, FilteringSortingService>();
 builder.Services.AddScoped<IPaginationService, PaginationService>();
 builder.Services.AddTransient<IPollingService, PollingService>();
+builder.Services.AddMudServices();
+
 
 await builder.Build().RunAsync();

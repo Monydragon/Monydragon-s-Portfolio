@@ -1,0 +1,46 @@
+﻿@using System.Text.Json
+
+<MudDialog Style="background-color: #0056B3">
+    <TitleContent>
+        <div>
+            <MudText Class="dialogTitle center">Random Fact</MudText>
+        </div>
+    </TitleContent>
+    <DialogContent>
+        <div>
+            <MudText Class="dialogContent">@Fact</MudText>
+        </div>
+    </DialogContent>
+    <DialogActions>
+        @* <MudButton OnClick="Cancel">Cancel</MudButton> *@
+        <MudButton Color="Color.Primary" Variant="Variant.Filled" OnClick="GetRandomFact">Another Fact?</MudButton>
+    </DialogActions>
+</MudDialog>
+
+
+@code {
+    [Inject]
+    private HttpClient HttpClient { get; set; }
+    
+    public string Fact { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetRandomFact();
+    }
+    
+    public async Task GetRandomFact()
+    {
+        var factsJson = await HttpClient.GetStringAsync("/data/random-facts.json");
+        var facts = JsonSerializer.Deserialize<List<RandomFact>>(factsJson);
+
+        var random = new Random();
+        var index = random.Next(0, facts.Count);
+        Fact = facts[index].fact;
+    }
+
+    public class RandomFact
+    {
+        public string fact { get; set; }
+    }
+}
