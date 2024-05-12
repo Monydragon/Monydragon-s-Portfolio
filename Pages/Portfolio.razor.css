@@ -12,15 +12,32 @@
 }
 
 .card {
-    background-color: #343A40 !important;
+    border: #343a40;
+    color: white;
 }
 
-.card-body, .card-title, .card-text, .btn-link {
+.card-body {
+    color: white;
+    background-color: #060660;
+}
+.card-title, .card-text, .btn-link {
     color: white !important;
 }
 
 .btn-primary {
     width: 100%; /* Make the button take the full width */
+}
+
+.btn-transparent {
+    background-color: transparent;
+    border-color: cornflowerblue;
+    border-bottom-width: thick;
+    color: white;
+}
+
+.btn-transparent:hover {
+    background-color: cornflowerblue;
+    color: white;
 }
 
 .card .collapse .card-body {

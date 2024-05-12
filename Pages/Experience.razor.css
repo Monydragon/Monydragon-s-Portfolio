@@ -2,7 +2,7 @@
     font-family: Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #F9F5CE;
+    background-color: #060660;
 }
 
 h3, h4 {
@@ -13,20 +13,20 @@ h3, h4 {
 h3 {
     font-size: 24px;
     font-weight: bold;
-    color: #444444;
+    color: white;
 }
 
 h4 {
     font-size: 18px;
     font-weight: bold;
-    color: #666666;
+    color: white;
 }
 
 p {
     margin: 0;
     padding: 0;
     line-height: 1.5;
-    color: #666666;
+    color: white;
 }
 
 ul {
@@ -37,7 +37,7 @@ ul {
 
 li {
     margin-bottom: 5px;
-    color: #666666;
+    color: white;
 }
 
 .container {
@@ -48,13 +48,14 @@ li {
 }
 
 .project-info {
-    background-color: #f9f5ce;
+    background-color: #060660;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 10px;
     display: inline-block; /* add this line */
     text-align: left; /* add this line */
+    opacity: 0.7;
 }
 
 .project-info:last-child {
@@ -73,7 +74,7 @@ li {
 
 .project-title strong {
     font-size: 14px;
-    color: #666666;
+    color: white;
     margin-left: auto;
 }
 

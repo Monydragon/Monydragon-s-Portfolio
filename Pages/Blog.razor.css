@@ -2,18 +2,19 @@
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: #343A40;
+    background-color: #060660;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+    opacity: 0.7;
 }
 
 .sticky-header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: #343A40; /* Adjust to match your site's theme */
+    background-color: #060660; /* Adjust to match your site's theme */
     color: white;
     display: flex;
     justify-content: space-between; /* Align items on opposite ends */
@@ -109,8 +110,9 @@
     padding: 15px;
     width: 90%;
     max-width: 800px;
-    background-color: #343A40; /* Adjust if needed */
+    background-color: #060660; /* Adjust if needed */
     box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional shadow for depth */
+    opacity: 0.7;
 }
 
 img {
@@ -245,10 +247,7 @@ pre {
     .icons-container.collapsed {
         justify-content: center; /* Ensure centering on mobile as well */
     }
-
-
-
-
+    
     .search-input-expanded {
         width: 50%; /* Adjust as needed to be half the width */
         margin: auto; /* Center the input in the available space */

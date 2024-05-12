@@ -3,14 +3,19 @@
     max-width: 350px !important;
     margin: auto;
     text-align: center;
+    background-color: #0d6efd;
 }
 html, h1{
-    color: grey;
+    color: white;
 }
 
 .title {
-    color: grey;
+    color: white;
     font-size: 18px;
+}
+
+.icon {
+    color: white;
 }
 
 button {
